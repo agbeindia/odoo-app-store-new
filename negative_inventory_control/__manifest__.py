@@ -32,6 +32,9 @@ See README.md for the full configuration hierarchy and design notes.
     'website': 'https://www.agbeindia.com',
     'license': 'LGPL-3',
     'depends': ['stock', 'mail'],
+    'images': [
+        'static/description/banner.png',
+    ],
     'data': [
         'security/ir.model.access.csv',
         'security/security.xml',
