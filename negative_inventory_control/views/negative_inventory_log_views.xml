@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="negative_inventory_log_view_list" model="ir.ui.view">
+        <field name="name">negative.inventory.log.list</field>
+        <field name="model">negative.inventory.log</field>
+        <field name="arch" type="xml">
+            <list default_order="id desc" create="false" edit="false" delete="false">
+                <field name="create_date" string="Date"/>
+                <field name="product_id"/>
+                <field name="location_id"/>
+                <field name="quantity_before"/>
+                <field name="transaction_quantity"/>
+                <field name="quantity_after"/>
+                <field name="policy_applied"/>
+                <field name="outcome" widget="badge"
+                       decoration-success="outcome in ('allowed', 'approved_proceeded')"
+                       decoration-warning="outcome == 'warned'"
+                       decoration-info="outcome == 'pending_approval'"
+                       decoration-danger="outcome in ('blocked', 'blocked_no_approval_path', 'rejected')"/>
+                <field name="picking_id" optional="show"/>
+                <field name="scrap_id" optional="hide"/>
+                <field name="quant_id" optional="hide"/>
+                <field name="user_id" optional="show"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="negative_inventory_log_view_pivot" model="ir.ui.view">
+        <field name="name">negative.inventory.log.pivot</field>
+        <field name="model">negative.inventory.log</field>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="product_id" type="row"/>
+                <field name="outcome" type="col"/>
+                <field name="transaction_quantity" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="negative_inventory_log_view_graph" model="ir.ui.view">
+        <field name="name">negative.inventory.log.graph</field>
+        <field name="model">negative.inventory.log</field>
+        <field name="arch" type="xml">
+            <graph type="bar" stacked="1">
+                <field name="create_date" interval="month"/>
+                <field name="outcome"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="negative_inventory_log_view_search" model="ir.ui.view">
+        <field name="name">negative.inventory.log.search</field>
+        <field name="model">negative.inventory.log</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="product_id"/>
+                <field name="location_id"/>
+                <field name="picking_id"/>
+                <field name="scrap_id"/>
+                <field name="quant_id"/>
+                <field name="user_id"/>
+                <filter name="blocked" string="Blocked" domain="[('outcome', 'in', ('blocked', 'blocked_no_approval_path'))]"/>
+                <filter name="warned" string="Warned" domain="[('outcome', '=', 'warned')]"/>
+                <filter name="approval_related" string="Approval Related" domain="[('outcome', 'in', ('pending_approval', 'approved_proceeded', 'rejected'))]"/>
+                <group>
+                    <filter name="group_by_product" string="Product" context="{'group_by': 'product_id'}"/>
+                    <filter name="group_by_location" string="Location" context="{'group_by': 'location_id'}"/>
+                    <filter name="group_by_outcome" string="Outcome" context="{'group_by': 'outcome'}"/>
+                    <filter name="group_by_date" string="Date" context="{'group_by': 'create_date:month'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="negative_inventory_log_action" model="ir.actions.act_window">
+        <field name="name">Negative Stock Audit Log</field>
+        <field name="res_model">negative.inventory.log</field>
+        <field name="view_mode">list,pivot,graph</field>
+    </record>
+
+    <menuitem id="menu_negative_inventory_log"
+              name="Audit Log"
+              parent="menu_negative_inventory_root"
+              action="negative_inventory_log_action"
+              sequence="20"/>
+</odoo>

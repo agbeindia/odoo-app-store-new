@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_stock_quant_tree_simple" model="ir.ui.view">
+        <field name="name">stock.quant.list.inherit.negative.inventory.control</field>
+        <field name="model">stock.quant</field>
+        <field name="inherit_id" ref="stock.view_stock_quant_tree_simple"/>
+        <field name="arch" type="xml">
+            <field name="quantity" position="after">
+                <field name="effective_negative_stock_policy" optional="hide"
+                       decoration-danger="effective_negative_stock_policy == 'block'"
+                       decoration-warning="effective_negative_stock_policy in ('warn', 'approval')"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_stock_quant_tree_inventory_editable" model="ir.ui.view">
+        <field name="name">stock.quant.inventory.list.editable.inherit.negative.inventory.control</field>
+        <field name="model">stock.quant</field>
+        <field name="inherit_id" ref="stock.view_stock_quant_tree_inventory_editable"/>
+        <field name="arch" type="xml">
+            <field name="quantity" position="after">
+                <field name="effective_negative_stock_policy" optional="hide"
+                       decoration-danger="effective_negative_stock_policy == 'block'"
+                       decoration-warning="effective_negative_stock_policy in ('warn', 'approval')"/>
+            </field>
+        </field>
+    </record>
+</odoo>

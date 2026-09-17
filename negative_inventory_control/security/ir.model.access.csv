@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_negative_inventory_request_user,negative.inventory.request.user,model_negative_inventory_request,stock.group_stock_user,1,1,1,0
+access_negative_inventory_request_manager,negative.inventory.request.manager,model_negative_inventory_request,stock.group_stock_manager,1,1,1,1
+access_negative_inventory_request_line_user,negative.inventory.request.line.user,model_negative_inventory_request_line,stock.group_stock_user,1,1,1,0
+access_negative_inventory_request_line_manager,negative.inventory.request.line.manager,model_negative_inventory_request_line,stock.group_stock_manager,1,1,1,1
+access_negative_inventory_log_user,negative.inventory.log.user,model_negative_inventory_log,stock.group_stock_user,1,0,0,0
+access_negative_inventory_log_manager,negative.inventory.log.manager,model_negative_inventory_log,stock.group_stock_manager,1,0,0,0

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Negative Inventory Control</title>
+</head>
+<body style="margin:0; padding:0; background-color:#f2f5f4; font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif; color:#10201e; font-size:15px; line-height:1.6;">
+<div style="max-width:880px; margin:0 auto; padding:28px 20px 60px 20px;">
+
+  <!-- ================= MASTHEAD ================= -->
+  <table cellpadding="0" cellspacing="0" border="0" style="width:100%; margin:0 0 6px 0;">
+    <tr>
+      <td style="width:64px; vertical-align:top;">
+        <img src="icon.png" alt="Negative Inventory Control icon" width="56" height="56" style="width:56px; height:56px; border-radius:12px; display:block;"/>
+      </td>
+      <td style="vertical-align:top; padding-left:16px;">
+        <h1 style="margin:0 0 6px 0; font-size:26px; font-weight:700; color:#10201e;">Negative Inventory Control</h1>
+        <p style="margin:0; font-size:14.5px; color:#4c625e; max-width:56ch;">Configurable Allow / Warn / Approval Required / Block policies for negative stock, with a full audit trail and an approval workflow &mdash; for Odoo 19.</p>
+      </td>
+    </tr>
+  </table>
+
+  <p style="margin:14px 0 0 0; font-size:12.5px; color:#4c625e; font-family:monospace;">
+    <b style="color:#10201e;">Version</b> 19.0.2.1.0
+    &nbsp;&nbsp;&middot;&nbsp;&nbsp;
+    <b style="color:#10201e;">License</b> LGPL-3
+    &nbsp;&nbsp;&middot;&nbsp;&nbsp;
+    <b style="color:#10201e;">Depends on</b> stock, mail
+    &nbsp;&nbsp;&middot;&nbsp;&nbsp;
+    <b style="color:#10201e;">Core files modified</b> 0
+  </p>
+
+  <hr style="border:none; border-top:1px solid #dce4e2; margin:24px 0;"/>
+
+  <!-- ================= WHY THIS EXISTS ================= -->
+  <div style="margin:0 0 36px 0;">
+    <p style="margin:0 0 8px 0; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:#0f6b63; font-weight:700; font-family:monospace;">Why this exists</p>
+    <h2 style="margin:0 0 10px 0; font-size:20px; color:#10201e;">Odoo lets stock go negative &mdash; silently, always, everywhere</h2>
+    <p style="margin:0; font-size:14.5px; color:#4c625e; max-width:68ch;">Deliveries, internal transfers, scrap, manufacturing consumption, and inventory adjustments can all push on-hand quantity below zero with no warning, no block, and no record that it happened. That's deliberate in core Odoo, not a bug &mdash; which means the business gets no say in the matter unless something is built for it. This module is that something.</p>
+  </div>
+
+  <!-- ================= THE POLICIES ================= -->
+  <div style="margin:0 0 36px 0; padding-top:28px; border-top:1px solid #dce4e2;">
+    <p style="margin:0 0 8px 0; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:#0f6b63; font-weight:700; font-family:monospace;">The policies</p>
+    <h2 style="margin:0 0 10px 0; font-size:20px; color:#10201e;">Four policies, and exactly what each one does on screen</h2>
+    <p style="margin:0 0 18px 0; font-size:14.5px; color:#4c625e; max-width:68ch;">Set a policy at Company, Location, Product Category, or Product level &mdash; leave any of them blank to inherit from the next level up. Whichever setting is <b style="color:#10201e;">strictest always wins</b>, regardless of which level it came from, so a deliberately-tightened guardrail can never be silently overridden by a looser one elsewhere.</p>
+
+    <div style="display:inline-block; width:47%; vertical-align:top; margin:0 3% 14px 0; padding:14px 16px; background-color:#ffffff; border:1px solid #dce4e2; border-radius:10px;">
+      <span style="display:inline-block; font-size:10px; font-weight:700; letter-spacing:1px; padding:4px 10px; border-radius:999px; color:#ffffff; background-color:#6c757d; font-family:monospace; margin:0 0 8px 0;">ALLOW</span>
+      <p style="margin:0 0 8px 0; font-size:13px; color:#4c625e;">Unchanged Odoo behaviour. The default &mdash; installing this module changes nothing until you configure it.</p>
+      <p style="margin:0; font-size:11.5px; background-color:#e4efed; border-radius:6px; padding:6px 9px; color:#10201e;"><b style="display:block; font-size:9.5px; text-transform:uppercase; letter-spacing:1px; color:#0f6b63; margin:0 0 2px 0;">On screen</b>Nothing. Still recorded in the audit log.</p>
+    </div>
+
+    <div style="display:inline-block; width:47%; vertical-align:top; margin:0 0 14px 0; padding:14px 16px; background-color:#ffffff; border:1px solid #dce4e2; border-radius:10px;">
+      <span style="display:inline-block; font-size:10px; font-weight:700; letter-spacing:1px; padding:4px 10px; border-radius:999px; color:#ffffff; background-color:#b8860b; font-family:monospace; margin:0 0 8px 0;">WARN</span>
+      <p style="margin:0 0 8px 0; font-size:13px; color:#4c625e;">Proceeds, but you're told about it &mdash; not left to notice it later.</p>
+      <p style="margin:0; font-size:11.5px; background-color:#e4efed; border-radius:6px; padding:6px 9px; color:#10201e;"><b style="display:block; font-size:9.5px; text-transform:uppercase; letter-spacing:1px; color:#0f6b63; margin:0 0 2px 0;">On screen</b>An on-screen notification at validation, plus a chatter note.</p>
+    </div>
+
+    <div style="display:inline-block; width:47%; vertical-align:top; margin:0 3% 14px 0; padding:14px 16px; background-color:#ffffff; border:1px solid #dce4e2; border-radius:10px;">
+      <span style="display:inline-block; font-size:10px; font-weight:700; letter-spacing:1px; padding:4px 10px; border-radius:999px; color:#ffffff; background-color:#0d6efd; font-family:monospace; margin:0 0 8px 0;">APPROVAL REQUIRED</span>
+      <p style="margin:0 0 8px 0; font-size:13px; color:#4c625e;">Pauses before anything is written. A Stock Manager must approve it, with a reason on record.</p>
+      <p style="margin:0; font-size:11.5px; background-color:#e4efed; border-radius:6px; padding:6px 9px; color:#10201e;"><b style="display:block; font-size:9.5px; text-transform:uppercase; letter-spacing:1px; color:#0f6b63; margin:0 0 2px 0;">On screen</b>A request form opens; the transfer resumes automatically once approved.</p>
+    </div>
+
+    <div style="display:inline-block; width:47%; vertical-align:top; margin:0 0 14px 0; padding:14px 16px; background-color:#ffffff; border:1px solid #dce4e2; border-radius:10px;">
+      <span style="display:inline-block; font-size:10px; font-weight:700; letter-spacing:1px; padding:4px 10px; border-radius:999px; color:#ffffff; background-color:#c42d2d; font-family:monospace; margin:0 0 8px 0;">BLOCK</span>
+      <p style="margin:0 0 8px 0; font-size:13px; color:#4c625e;">Refused outright. Nothing is written to stock.</p>
+      <p style="margin:0; font-size:11.5px; background-color:#e4efed; border-radius:6px; padding:6px 9px; color:#10201e;"><b style="display:block; font-size:9.5px; text-transform:uppercase; letter-spacing:1px; color:#0f6b63; margin:0 0 2px 0;">On screen</b>An error explaining exactly what would have gone negative.</p>
+    </div>
+
+    <p style="margin:16px 0 0 0; font-size:13px; font-family:monospace; color:#10201e; background-color:#e4efed; border-radius:8px; padding:10px 14px;">
+      Product &rarr; Category &rarr; Location &rarr; Company &nbsp;&nbsp;&mdash;&nbsp;&nbsp; <b style="color:#0f6b63;">strictest setting always wins</b>
+    </p>
+  </div>
+
+  <!-- ================= QUICK START ================= -->
+  <div style="margin:0 0 36px 0; padding-top:28px; border-top:1px solid #dce4e2;">
+    <p style="margin:0 0 8px 0; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:#0f6b63; font-weight:700; font-family:monospace;">Quick start</p>
+    <h2 style="margin:0 0 10px 0; font-size:20px; color:#10201e;">From install to your first blocked delivery, in five steps</h2>
+    <p style="margin:0 0 20px 0; font-size:14.5px; color:#4c625e;">Exactly what to click, in order.</p>
+
+    <!-- Step 1 -->
+    <div style="background-color:#ffffff; border:1px solid #dce4e2; border-radius:10px; padding:18px 20px; margin:0 0 14px 0;">
+      <p style="margin:0 0 6px 0; font-size:11px; font-family:monospace; color:#0f6b63; background-color:#e4efed; display:inline-block; padding:3px 9px; border-radius:5px;">STEP 1 &nbsp;&middot;&nbsp; Inventory &rsaquo; a product &rsaquo; Inventory tab</p>
+      <h3 style="margin:8px 0 6px 0; font-size:15.5px; color:#10201e;">Set a policy</h3>
+      <p style="margin:0 0 14px 0; font-size:13.5px; color:#4c625e;">Open any product, scroll to the <b style="color:#10201e;">Negative Stock</b> section, and pick a policy. Only visible to Inventory Administrators &mdash; if you don't see it, you need that role.</p>
+      <div style="border:1px solid #dce4e2; border-radius:8px; max-width:380px;">
+        <p style="margin:0; background-color:#714b67; color:#ffffff; font-size:11px; font-weight:700; padding:7px 12px; border-radius:8px 8px 0 0;">Inventory &nbsp;&rsaquo;&nbsp; Products &nbsp;&rsaquo;&nbsp; Demo Widget</p>
+        <div style="padding:12px 14px;">
+          <p style="margin:0 0 4px 0; font-size:10px; text-transform:uppercase; letter-spacing:1px; color:#4c625e;">Negative Stock Policy</p>
+          <p style="margin:0 0 8px 0; padding:7px 10px; border:1px solid #0d6efd; border-radius:6px; font-size:12.5px; color:#10201e;">Approval Required &nbsp;&#9662;</p>
+          <p style="margin:0; padding:6px 10px; font-size:12px; color:#4c625e; border-top:1px solid #dce4e2;">Allow</p>
+          <p style="margin:0; padding:6px 10px; font-size:12px; color:#4c625e; border-top:1px solid #dce4e2;">Warn</p>
+          <p style="margin:0; padding:6px 10px; font-size:12px; font-weight:700; color:#0f6b63; background-color:#e4efed; border-top:1px solid #dce4e2;">Approval Required</p>
+          <p style="margin:0; padding:6px 10px; font-size:12px; color:#4c625e; border-top:1px solid #dce4e2;">Block</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div style="background-color:#ffffff; border:1px solid #dce4e2; border-radius:10px; padding:18px 20px; margin:0 0 14px 0;">
+      <p style="margin:0 0 6px 0; font-size:11px; font-family:monospace; color:#0f6b63; background-color:#e4efed; display:inline-block; padding:3px 9px; border-radius:5px;">STEP 2 &nbsp;&middot;&nbsp; Inventory &rsaquo; Delivery Orders &rsaquo; New</p>
+      <h3 style="margin:8px 0 6px 0; font-size:15.5px; color:#10201e;">Try to move more than you have</h3>
+      <p style="margin:0 0 14px 0; font-size:13.5px; color:#4c625e;">Create a transfer for more than what's on hand, and validate it &mdash; same button, same click, as any ordinary delivery.</p>
+      <div style="border:1px solid #dce4e2; border-radius:8px; max-width:380px;">
+        <p style="margin:0; background-color:#714b67; color:#ffffff; font-size:11px; font-weight:700; padding:7px 12px; border-radius:8px 8px 0 0;">WH/OUT/00123 &nbsp;&middot;&nbsp; Draft</p>
+        <div style="padding:12px 14px;">
+          <p style="margin:0 0 6px 0; font-size:12.5px; color:#10201e;">Demo Widget &nbsp;&nbsp;<span style="font-family:monospace; color:#4c625e;">Qty 5.00</span></p>
+          <p style="margin:0 0 10px 0; font-size:12px; color:#4c625e;">On hand &nbsp;&nbsp;<span style="font-family:monospace;">0.00</span></p>
+          <span style="display:inline-block; font-size:11px; font-weight:700; padding:6px 16px; border-radius:6px; color:#ffffff; background-color:#714b67;">Validate</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div style="background-color:#ffffff; border:1px solid #dce4e2; border-radius:10px; padding:18px 20px; margin:0 0 14px 0;">
+      <p style="margin:0 0 6px 0; font-size:11px; font-family:monospace; color:#0f6b63; background-color:#e4efed; display:inline-block; padding:3px 9px; border-radius:5px;">STEP 3 &nbsp;&middot;&nbsp; Right after you click Validate</p>
+      <h3 style="margin:8px 0 6px 0; font-size:15.5px; color:#10201e;">See exactly what your policy does</h3>
+      <p style="margin:0 0 14px 0; font-size:13.5px; color:#4c625e;">What happens next depends entirely on the policy you picked in step 1 &mdash; here's all four.</p>
+
+      <div style="display:inline-block; width:47%; vertical-align:top; margin:0 3% 10px 0; border:1px solid #dce4e2; border-radius:8px;">
+        <p style="margin:0; background-color:#6c757d; color:#ffffff; font-size:10.5px; font-weight:700; padding:6px 10px; border-radius:8px 8px 0 0;">ALLOW</p>
+        <div style="padding:10px 12px;">
+          <p style="margin:0 0 6px 0; font-size:12px; color:#4c625e;">Delivery completes. No popup.</p>
+          <span style="display:inline-block; font-size:10px; font-weight:700; padding:3px 9px; border-radius:999px; color:#ffffff; background-color:#6c757d;">Allowed</span>
+        </div>
+      </div>
+
+      <div style="display:inline-block; width:47%; vertical-align:top; margin:0 0 10px 0; border:1px solid #dce4e2; border-radius:8px;">
+        <p style="margin:0; background-color:#b8860b; color:#ffffff; font-size:10.5px; font-weight:700; padding:6px 10px; border-radius:8px 8px 0 0;">WARN</p>
+        <div style="padding:10px 12px;">
+          <p style="margin:0 0 6px 0; padding:8px 10px; border-radius:6px; font-size:11.5px; color:#ffffff; background-color:#b8860b;">Negative Stock Warning &mdash; on hand -5.00</p>
+          <p style="margin:0; font-size:11.5px; color:#4c625e;">...then completes.</p>
+        </div>
+      </div>
+
+      <div style="display:inline-block; width:47%; vertical-align:top; margin:0 3% 10px 0; border:1px solid #dce4e2; border-radius:8px;">
+        <p style="margin:0; background-color:#0d6efd; color:#ffffff; font-size:10.5px; font-weight:700; padding:6px 10px; border-radius:8px 8px 0 0;">APPROVAL</p>
+        <div style="padding:10px 12px;">
+          <p style="margin:0 0 4px 0; font-size:10px; text-transform:uppercase; letter-spacing:1px; color:#4c625e;">Reason for requesting</p>
+          <p style="margin:0 0 8px 0; padding:6px 9px; border:1px solid #dce4e2; border-radius:6px; font-size:11.5px; color:#4c625e;">Why should this be allowed?</p>
+          <span style="display:inline-block; font-size:10.5px; font-weight:700; padding:5px 11px; border-radius:6px; color:#ffffff; background-color:#0d6efd;">Submit for Approval</span>
+        </div>
+      </div>
+
+      <div style="display:inline-block; width:47%; vertical-align:top; margin:0 0 10px 0; border:1px solid #dce4e2; border-radius:8px;">
+        <p style="margin:0; background-color:#c42d2d; color:#ffffff; font-size:10.5px; font-weight:700; padding:6px 10px; border-radius:8px 8px 0 0;">BLOCK</p>
+        <div style="padding:10px 12px;">
+          <p style="margin:0; padding:8px 10px; background-color:#fbeaea; border:1px solid #ebc4c4; color:#7a2424; border-radius:6px; font-size:11px;">This operation is blocked by the Negative Stock Policy &mdash; Demo Widget at WH/Stock.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 4 -->
+    <div style="background-color:#ffffff; border:1px solid #dce4e2; border-radius:10px; padding:18px 20px; margin:0 0 14px 0;">
+      <p style="margin:0 0 6px 0; font-size:11px; font-family:monospace; color:#0f6b63; background-color:#e4efed; display:inline-block; padding:3px 9px; border-radius:5px;">STEP 4 &nbsp;&middot;&nbsp; Inventory &rsaquo; Negative Stock Handling &rsaquo; Approval Requests</p>
+      <h3 style="margin:8px 0 6px 0; font-size:15.5px; color:#10201e;">A manager reviews it</h3>
+      <p style="margin:0 0 14px 0; font-size:13.5px; color:#4c625e;">Only relevant for Approval Required. The request shows up as a card, with the decision right on it &mdash; no digging through a list first.</p>
+      <div style="border:1px solid #dce4e2; border-radius:8px; max-width:380px;">
+        <p style="margin:0; background-color:#714b67; color:#ffffff; font-size:11px; font-weight:700; padding:7px 12px; border-radius:8px 8px 0 0;">Approval Requests &nbsp;&middot;&nbsp; Kanban</p>
+        <div style="padding:12px 14px;">
+          <p style="margin:0 0 4px 0; font-size:12.5px; color:#10201e;"><b>NIR/2026/0001</b> &nbsp;&nbsp;<span style="display:inline-block; font-size:10px; font-weight:700; padding:3px 9px; border-radius:999px; color:#ffffff; background-color:#0d6efd;">To Approve</span></p>
+          <p style="margin:0 0 10px 0; font-size:11.5px; color:#4c625e;">WH/OUT/00123 &middot; Requested by Admin</p>
+          <span style="display:inline-block; font-size:11px; font-weight:700; padding:6px 14px; border-radius:6px; color:#ffffff; background-color:#0f6b63;">Approve</span>
+          <span style="display:inline-block; font-size:11px; font-weight:700; padding:6px 14px; border-radius:6px; color:#4c625e; border:1px solid #dce4e2; margin-left:6px;">Reject</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 5 -->
+    <div style="background-color:#ffffff; border:1px solid #dce4e2; border-radius:10px; padding:18px 20px; margin:0 0 4px 0;">
+      <p style="margin:0 0 6px 0; font-size:11px; font-family:monospace; color:#0f6b63; background-color:#e4efed; display:inline-block; padding:3px 9px; border-radius:5px;">STEP 5 &nbsp;&middot;&nbsp; Inventory &rsaquo; Negative Stock Handling &rsaquo; Audit Log</p>
+      <h3 style="margin:8px 0 6px 0; font-size:15.5px; color:#10201e;">Check the trail</h3>
+      <p style="margin:0 0 14px 0; font-size:13.5px; color:#4c625e;">Whatever happened &mdash; allowed, warned, approved, rejected, or blocked &mdash; it's here, with the exact quantities and who did it.</p>
+      <div style="border:1px solid #dce4e2; border-radius:8px; max-width:380px;">
+        <p style="margin:0; background-color:#714b67; color:#ffffff; font-size:11px; font-weight:700; padding:7px 12px; border-radius:8px 8px 0 0;">Negative Stock Audit Log</p>
+        <div style="padding:12px 14px;">
+          <p style="margin:0 0 8px 0; font-size:12.5px; color:#10201e;">Demo Widget &nbsp;&nbsp;<span style="display:inline-block; font-size:10px; font-weight:700; padding:3px 9px; border-radius:999px; color:#ffffff; background-color:#b8860b;">Warned</span></p>
+          <p style="margin:0; font-size:12.5px; color:#10201e;">Demo Widget &nbsp;&nbsp;<span style="display:inline-block; font-size:10px; font-weight:700; padding:3px 9px; border-radius:999px; color:#ffffff; background-color:#c42d2d;">Blocked</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= APPROVAL WORKFLOW ================= -->
+  <div style="margin:0 0 36px 0; padding-top:28px; border-top:1px solid #dce4e2;">
+    <p style="margin:0 0 8px 0; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:#0f6b63; font-weight:700; font-family:monospace;">Approval workflow, conceptually</p>
+    <h2 style="margin:0 0 14px 0; font-size:20px; color:#10201e;">Pause, review, resume &mdash; automatically</h2>
+
+    <p style="margin:0 0 8px 0; font-size:13.5px; color:#10201e; padding:10px 14px; background-color:#e4efed; border-radius:8px;"><b style="color:#0f6b63; font-family:monospace;">1. Detected</b> &nbsp;&mdash;&nbsp; Before anything is written to stock.</p>
+    <p style="margin:0 0 8px 0; font-size:13.5px; color:#10201e; padding:10px 14px; background-color:#e4efed; border-radius:8px;"><b style="color:#0f6b63; font-family:monospace;">2. Paused</b> &nbsp;&mdash;&nbsp; A request is created with the exact product / location / quantity.</p>
+    <p style="margin:0 0 8px 0; font-size:13.5px; color:#10201e; padding:10px 14px; background-color:#e4efed; border-radius:8px;"><b style="color:#0f6b63; font-family:monospace;">3. Reason submitted</b> &nbsp;&mdash;&nbsp; The requester explains why it should be allowed.</p>
+    <p style="margin:0 0 8px 0; font-size:13.5px; color:#10201e; padding:10px 14px; background-color:#e4efed; border-radius:8px;"><b style="color:#0f6b63; font-family:monospace;">4. Reviewed</b> &nbsp;&mdash;&nbsp; A Stock Manager approves or rejects it.</p>
+    <p style="margin:0 0 16px 0; font-size:13.5px; color:#10201e; padding:10px 14px; background-color:#e4efed; border-radius:8px;"><b style="color:#0f6b63; font-family:monospace;">5. Resumed</b> &nbsp;&mdash;&nbsp; On approval, the original transaction completes on its own.</p>
+
+    <p style="margin:0; font-size:13.5px; color:#4c625e;">Covers every path that can independently drive stock negative: picking-driven transfers (deliveries, internal transfers, manufacturing component pickings), scrap, and inventory adjustments &mdash; not just deliveries.</p>
+  </div>
+
+  <!-- ================= VISIBILITY ================= -->
+  <div style="margin:0 0 36px 0; padding-top:28px; border-top:1px solid #dce4e2;">
+    <p style="margin:0 0 8px 0; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:#0f6b63; font-weight:700; font-family:monospace;">Visibility</p>
+    <h2 style="margin:0 0 16px 0; font-size:20px; color:#10201e;">Nothing you have to go looking for</h2>
+
+    <div style="background-color:#ffffff; border:1px solid #dce4e2; border-radius:10px; padding:16px 18px; margin:0 0 10px 0;">
+      <h3 style="margin:0 0 6px 0; font-size:14.5px; color:#10201e;">Kanban approval queue</h3>
+      <p style="margin:0; font-size:13px; color:#4c625e;">Pending requests as cards grouped by status, with Approve / Reject right on the card &mdash; not buried three clicks deep.</p>
+    </div>
+    <div style="background-color:#ffffff; border:1px solid #dce4e2; border-radius:10px; padding:16px 18px; margin:0 0 10px 0;">
+      <h3 style="margin:0 0 6px 0; font-size:14.5px; color:#10201e;">Audit log, three ways</h3>
+      <p style="margin:0; font-size:13px; color:#4c625e;">List, pivot, and graph views of every negative-stock event &mdash; grouped by product, location, outcome, or month.</p>
+    </div>
+    <div style="background-color:#ffffff; border:1px solid #dce4e2; border-radius:10px; padding:16px 18px; margin:0 0 10px 0;">
+      <h3 style="margin:0 0 6px 0; font-size:14.5px; color:#10201e;">Effective policy, per row</h3>
+      <p style="margin:0; font-size:13px; color:#4c625e;">The Physical Inventory screen shows the actual resolved policy for each product + location &mdash; not just what's set on the product alone.</p>
+    </div>
+  </div>
+
+  <!-- ================= UNDER THE HOOD ================= -->
+  <div style="margin:0 0 36px 0; padding-top:28px; border-top:1px solid #dce4e2;">
+    <p style="margin:0 0 8px 0; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:#0f6b63; font-weight:700; font-family:monospace;">Under the hood</p>
+    <h2 style="margin:0 0 16px 0; font-size:20px; color:#10201e;">Built to hold up, not just to demo</h2>
+
+    <div style="display:inline-block; width:47%; vertical-align:top; margin:0 3% 12px 0; padding:14px 16px; background-color:#ffffff; border:1px solid #dce4e2; border-radius:10px;">
+      <h3 style="margin:0 0 6px 0; font-size:14px; color:#10201e;">Detects every path, not just deliveries</h3>
+      <p style="margin:0; font-size:12.5px; color:#4c625e;">Deliveries, internal transfers, scrap, unbuild, manufacturing consumption, and inventory adjustments all funnel through the same enforcement layer &mdash; nothing slips through a side door.</p>
+    </div>
+    <div style="display:inline-block; width:47%; vertical-align:top; margin:0 0 12px 0; padding:14px 16px; background-color:#ffffff; border:1px solid #dce4e2; border-radius:10px;">
+      <h3 style="margin:0 0 6px 0; font-size:14px; color:#10201e;">Zero behaviour change on install</h3>
+      <p style="margin:0; font-size:12.5px; color:#4c625e;">Every policy defaults to Allow / inherit. Installing this module changes nothing on an existing database until you configure it.</p>
+    </div>
+    <div style="display:inline-block; width:47%; vertical-align:top; margin:0 3% 12px 0; padding:14px 16px; background-color:#ffffff; border:1px solid #dce4e2; border-radius:10px;">
+      <h3 style="margin:0 0 6px 0; font-size:14px; color:#10201e;">Full audit trail, even for Allow</h3>
+      <p style="margin:0; font-size:12.5px; color:#4c625e;">Every negative-stock event is logged &mdash; including the ones you chose to allow &mdash; so "we permitted this" is always on record, not just the ones that got stopped.</p>
+    </div>
+    <div style="display:inline-block; width:47%; vertical-align:top; margin:0 0 12px 0; padding:14px 16px; background-color:#ffffff; border:1px solid #dce4e2; border-radius:10px;">
+      <h3 style="margin:0 0 6px 0; font-size:14px; color:#10201e;">Multi-company aware</h3>
+      <p style="margin:0; font-size:12.5px; color:#4c625e;">Requests and audit-log entries are scoped per company by record rule &mdash; a user restricted to one company never sees another's.</p>
+    </div>
+    <div style="display:inline-block; width:47%; vertical-align:top; margin:0 3% 12px 0; padding:14px 16px; background-color:#ffffff; border:1px solid #dce4e2; border-radius:10px;">
+      <h3 style="margin:0 0 6px 0; font-size:14px; color:#10201e;">Concurrency-safe approvals</h3>
+      <p style="margin:0; font-size:12.5px; color:#4c625e;">Two managers clicking Approve on the same request at the same instant can't both resume the transaction &mdash; the row is locked before either one proceeds.</p>
+    </div>
+    <div style="display:inline-block; width:47%; vertical-align:top; margin:0 0 12px 0; padding:14px 16px; background-color:#ffffff; border:1px solid #dce4e2; border-radius:10px;">
+      <h3 style="margin:0 0 6px 0; font-size:14px; color:#10201e;">Audit entries survive a Block</h3>
+      <p style="margin:0; font-size:12.5px; color:#4c625e;">A blocked attempt rolls back its own transaction, so that log entry is written on an independent database connection &mdash; the record of the attempt survives even though the attempt itself never did.</p>
+    </div>
+  </div>
+
+  <!-- ================= FOOTER NOTE ================= -->
+  <div style="margin:0 0 16px 0; padding:16px 18px; background-color:#e4efed; border:1px solid #dce4e2; border-radius:10px; font-size:13px; color:#4c625e;">
+    No core files are modified. Depends only on <span style="font-family:monospace; background-color:rgba(16,32,30,.06); padding:1px 5px; border-radius:4px;">stock</span> and <span style="font-family:monospace; background-color:rgba(16,32,30,.06); padding:1px 5px; border-radius:4px;">mail</span> &mdash; manufacturing consumption is covered automatically through the shared stock-move mechanism if/when the Manufacturing app is installed, with no hard dependency on it.
+  </div>
+
+  <p style="margin:20px 0 0 0; font-size:12px; color:#4c625e;">See README.md in the module for the full configuration reference and technical design notes.</p>
+
+</div>
+</body>
+</html>

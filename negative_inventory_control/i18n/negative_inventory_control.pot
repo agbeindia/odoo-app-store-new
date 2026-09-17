@@ -1,0 +1,813 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* negative_inventory_control
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-17 09:31+0000\n"
+"PO-Revision-Date: 2026-09-17 09:31+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: negative_inventory_control
+#. odoo-python
+#: code:addons/negative_inventory_control/models/negative_inventory_policy.py:0
+msgid ""
+"- %(product)s at %(location)s: on hand %(on_hand).2f, requested "
+"%(decrement).2f -> would result in %(projected).2f (policy: %(policy)s)"
+msgstr ""
+
+#. module: negative_inventory_control
+#. odoo-python
+#: code:addons/negative_inventory_control/models/negative_inventory_policy.py:0
+msgid ""
+"<p>- %(product)s at %(location)s: on hand %(on_hand).2f, requested "
+"%(decrement).2f → would result in %(projected).2f (policy: %(policy)s)</p>"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.constraint,message:negative_inventory_control.constraint_negative_inventory_request_check_one_origin
+msgid ""
+"A negative-stock request must be linked to exactly one transfer, scrap, or "
+"inventory adjustment."
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields.selection,name:negative_inventory_control.selection__product_category__negative_stock_policy__allow
+#: model:ir.model.fields.selection,name:negative_inventory_control.selection__product_template__negative_stock_policy__allow
+#: model:ir.model.fields.selection,name:negative_inventory_control.selection__res_company__negative_stock_policy__allow
+#: model:ir.model.fields.selection,name:negative_inventory_control.selection__stock_location__negative_stock_policy__allow
+#: model:ir.model.fields.selection,name:negative_inventory_control.selection__stock_quant__effective_negative_stock_policy__allow
+msgid "Allow"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields.selection,name:negative_inventory_control.selection__negative_inventory_log__outcome__allowed
+msgid "Allowed"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model_terms:ir.ui.view,arch_db:negative_inventory_control.negative_inventory_log_view_search
+msgid "Approval Related"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.ui.menu,name:negative_inventory_control.menu_negative_inventory_request
+msgid "Approval Requests"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields.selection,name:negative_inventory_control.selection__product_category__negative_stock_policy__approval
+#: model:ir.model.fields.selection,name:negative_inventory_control.selection__product_template__negative_stock_policy__approval
+#: model:ir.model.fields.selection,name:negative_inventory_control.selection__res_company__negative_stock_policy__approval
+#: model:ir.model.fields.selection,name:negative_inventory_control.selection__stock_location__negative_stock_policy__approval
+#: model:ir.model.fields.selection,name:negative_inventory_control.selection__stock_quant__effective_negative_stock_policy__approval
+msgid "Approval Required"
+msgstr ""
+
+#. module: negative_inventory_control
+#. odoo-python
+#: code:addons/negative_inventory_control/models/negative_inventory_request.py:0
+msgid "Approval requested by %(user)s for %(origin)s."
+msgstr ""
+
+#. module: negative_inventory_control
+#: model_terms:ir.ui.view,arch_db:negative_inventory_control.negative_inventory_request_view_form
+#: model_terms:ir.ui.view,arch_db:negative_inventory_control.negative_inventory_request_view_kanban
+msgid "Approve"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields.selection,name:negative_inventory_control.selection__negative_inventory_request__state__approved
+msgid "Approved"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields.selection,name:negative_inventory_control.selection__negative_inventory_log__outcome__approved_proceeded
+msgid "Approved - Proceeded"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request__approved_by
+msgid "Approved By"
+msgstr ""
+
+#. module: negative_inventory_control
+#. odoo-python
+#: code:addons/negative_inventory_control/models/negative_inventory_request.py:0
+msgid ""
+"Approved, but the transaction could not be completed automatically: %s\n"
+"Please complete it manually."
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.ui.menu,name:negative_inventory_control.menu_negative_inventory_log
+#: model_terms:ir.ui.view,arch_db:negative_inventory_control.negative_inventory_request_view_form
+msgid "Audit Log"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields.selection,name:negative_inventory_control.selection__product_category__negative_stock_policy__block
+#: model:ir.model.fields.selection,name:negative_inventory_control.selection__product_template__negative_stock_policy__block
+#: model:ir.model.fields.selection,name:negative_inventory_control.selection__res_company__negative_stock_policy__block
+#: model:ir.model.fields.selection,name:negative_inventory_control.selection__stock_location__negative_stock_policy__block
+#: model:ir.model.fields.selection,name:negative_inventory_control.selection__stock_quant__effective_negative_stock_policy__block
+msgid "Block"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields.selection,name:negative_inventory_control.selection__negative_inventory_log__outcome__blocked
+#: model_terms:ir.ui.view,arch_db:negative_inventory_control.negative_inventory_log_view_search
+msgid "Blocked"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields.selection,name:negative_inventory_control.selection__negative_inventory_log__outcome__blocked_no_approval_path
+msgid "Blocked (approval not available for this operation)"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model,name:negative_inventory_control.model_res_company
+msgid "Companies"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_log__company_id
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request__company_id
+msgid "Company"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model,name:negative_inventory_control.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_log__create_uid
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request__create_uid
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request_line__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_log__create_date
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request__create_date
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request_line__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model_terms:ir.ui.view,arch_db:negative_inventory_control.negative_inventory_log_view_list
+#: model_terms:ir.ui.view,arch_db:negative_inventory_control.negative_inventory_log_view_search
+msgid "Date"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request__decision_date
+msgid "Decision Date"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request__decision_note
+msgid "Decision Note"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,help:negative_inventory_control.field_res_company__negative_stock_policy
+#: model:ir.model.fields,help:negative_inventory_control.field_res_config_settings__negative_stock_policy
+msgid ""
+"Default policy applied when a stock operation would push on-hand quantity "
+"below zero, for any product, category, or location that doesn't have a more "
+"specific policy of its own. Defaults to Allow so installing this module does"
+" not change existing behaviour until you configure it."
+msgstr ""
+
+#. module: negative_inventory_control
+#: model_terms:ir.ui.view,arch_db:negative_inventory_control.res_config_settings_view_form
+msgid ""
+"Default policy applied when a stock operation would push on-hand quantity "
+"below zero. Can be refined per location, product category, or product."
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_log__display_name
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request__display_name
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request_line__display_name
+#: model:ir.model.fields,field_description:negative_inventory_control.field_product_category__display_name
+#: model:ir.model.fields,field_description:negative_inventory_control.field_product_template__display_name
+#: model:ir.model.fields,field_description:negative_inventory_control.field_res_company__display_name
+#: model:ir.model.fields,field_description:negative_inventory_control.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:negative_inventory_control.field_stock_location__display_name
+#: model:ir.model.fields,field_description:negative_inventory_control.field_stock_move__display_name
+#: model:ir.model.fields,field_description:negative_inventory_control.field_stock_picking__display_name
+#: model:ir.model.fields,field_description:negative_inventory_control.field_stock_quant__display_name
+#: model:ir.model.fields,field_description:negative_inventory_control.field_stock_scrap__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields.selection,name:negative_inventory_control.selection__negative_inventory_request__state__done
+msgid "Done"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields.selection,name:negative_inventory_control.selection__negative_inventory_request__state__draft
+msgid "Draft"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request_line__quantity_expected_after
+msgid "Expected After"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_log__quantity_after
+msgid "Expected On Hand After"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,help:negative_inventory_control.field_negative_inventory_request__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_log__id
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request__id
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request_line__id
+#: model:ir.model.fields,field_description:negative_inventory_control.field_product_category__id
+#: model:ir.model.fields,field_description:negative_inventory_control.field_product_template__id
+#: model:ir.model.fields,field_description:negative_inventory_control.field_res_company__id
+#: model:ir.model.fields,field_description:negative_inventory_control.field_res_config_settings__id
+#: model:ir.model.fields,field_description:negative_inventory_control.field_stock_location__id
+#: model:ir.model.fields,field_description:negative_inventory_control.field_stock_move__id
+#: model:ir.model.fields,field_description:negative_inventory_control.field_stock_picking__id
+#: model:ir.model.fields,field_description:negative_inventory_control.field_stock_quant__id
+#: model:ir.model.fields,field_description:negative_inventory_control.field_stock_scrap__id
+msgid "ID"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,help:negative_inventory_control.field_negative_inventory_request__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,help:negative_inventory_control.field_negative_inventory_request__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,help:negative_inventory_control.field_negative_inventory_request__message_has_error
+#: model:ir.model.fields,help:negative_inventory_control.field_negative_inventory_request__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request__quant_id
+msgid "Inventory Adjustment"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model,name:negative_inventory_control.model_stock_location
+msgid "Inventory Locations"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_log__write_uid
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request__write_uid
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request_line__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_log__write_date
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request__write_date
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request_line__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request__line_ids
+#: model_terms:ir.ui.view,arch_db:negative_inventory_control.negative_inventory_request_view_form
+msgid "Lines"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_log__location_id
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request_line__location_id
+#: model_terms:ir.ui.view,arch_db:negative_inventory_control.negative_inventory_log_view_search
+msgid "Location"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request__log_count
+msgid "Log Count"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_log__move_id
+msgid "Move"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model_terms:ir.ui.view,arch_db:negative_inventory_control.negative_inventory_request_view_search
+msgid "My Requests"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request__name
+msgid "Name"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model,name:negative_inventory_control.model_negative_inventory_request
+msgid "Negative Inventory Approval Request"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model,name:negative_inventory_control.model_negative_inventory_request_line
+msgid "Negative Inventory Approval Request Line"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model,name:negative_inventory_control.model_negative_inventory_log
+msgid "Negative Inventory Audit Log"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model_terms:ir.ui.view,arch_db:negative_inventory_control.product_category_form_view
+#: model_terms:ir.ui.view,arch_db:negative_inventory_control.product_template_form_view
+msgid "Negative Stock"
+msgstr ""
+
+#. module: negative_inventory_control
+#. odoo-python
+#: code:addons/negative_inventory_control/models/stock_quant.py:0
+#: code:addons/negative_inventory_control/models/stock_scrap.py:0
+msgid "Negative Stock - Approval Required"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.actions.act_window,name:negative_inventory_control.negative_inventory_log_action
+msgid "Negative Stock Audit Log"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.ui.menu,name:negative_inventory_control.menu_negative_inventory_root
+msgid "Negative Stock Handling"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_product_category__negative_stock_policy
+#: model:ir.model.fields,field_description:negative_inventory_control.field_product_product__negative_stock_policy
+#: model:ir.model.fields,field_description:negative_inventory_control.field_product_template__negative_stock_policy
+#: model:ir.model.fields,field_description:negative_inventory_control.field_res_company__negative_stock_policy
+#: model:ir.model.fields,field_description:negative_inventory_control.field_res_config_settings__negative_stock_policy
+#: model:ir.model.fields,field_description:negative_inventory_control.field_stock_location__negative_stock_policy
+#: model:ir.model.fields,field_description:negative_inventory_control.field_stock_quant__effective_negative_stock_policy
+#: model_terms:ir.ui.view,arch_db:negative_inventory_control.res_config_settings_view_form
+msgid "Negative Stock Policy"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.actions.act_window,name:negative_inventory_control.negative_inventory_request_action
+msgid "Negative Stock Requests"
+msgstr ""
+
+#. module: negative_inventory_control
+#. odoo-python
+#: code:addons/negative_inventory_control/models/stock_picking.py:0
+msgid "Negative Stock Warning"
+msgstr ""
+
+#. module: negative_inventory_control
+#. odoo-python
+#: code:addons/negative_inventory_control/models/stock_move.py:0
+msgid ""
+"Negative stock warning: the following operations will result in negative on-"
+"hand quantity."
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,help:negative_inventory_control.field_negative_inventory_request__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,help:negative_inventory_control.field_negative_inventory_request__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request_line__quantity_before
+msgid "On Hand"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_log__quantity_before
+msgid "On Hand Before"
+msgstr ""
+
+#. module: negative_inventory_control
+#. odoo-python
+#: code:addons/negative_inventory_control/models/negative_inventory_request.py:0
+msgid ""
+"Only an Inventory Administrator can approve or reject a negative-stock "
+"request."
+msgstr ""
+
+#. module: negative_inventory_control
+#: model_terms:ir.ui.view,arch_db:negative_inventory_control.negative_inventory_request_view_form
+msgid "Open"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model_terms:ir.ui.view,arch_db:negative_inventory_control.negative_inventory_request_view_form
+#: model_terms:ir.ui.view,arch_db:negative_inventory_control.negative_inventory_request_view_list
+msgid "Origin"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request__origin_display_name
+msgid "Origin Display Name"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_log__outcome
+#: model_terms:ir.ui.view,arch_db:negative_inventory_control.negative_inventory_log_view_search
+msgid "Outcome"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields.selection,name:negative_inventory_control.selection__negative_inventory_log__outcome__pending_approval
+msgid "Pending Approval"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_log__picking_id
+msgid "Picking"
+msgstr ""
+
+#. module: negative_inventory_control
+#. odoo-python
+#: code:addons/negative_inventory_control/models/negative_inventory_request.py:0
+msgid ""
+"Please explain why this negative-stock transaction should be allowed before "
+"submitting it for approval."
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_log__policy_applied
+msgid "Policy Applied"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,help:negative_inventory_control.field_stock_location__negative_stock_policy
+msgid ""
+"Policy applied when stock at this location would go negative. Leave empty to"
+" inherit from a parent location, the product, its category, or the company "
+"default. Only meaningful for Internal and Transit locations - other location"
+" types are never subject to negative-stock control."
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,help:negative_inventory_control.field_product_category__negative_stock_policy
+msgid ""
+"Policy applied when stock of products in this category would go negative. "
+"Leave empty to inherit from a parent category, the product, the location, or"
+" the company default."
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,help:negative_inventory_control.field_product_product__negative_stock_policy
+#: model:ir.model.fields,help:negative_inventory_control.field_product_template__negative_stock_policy
+msgid ""
+"Policy applied when this product's stock would go negative. Leave empty to "
+"inherit from its category, the location, or the company default."
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model,name:negative_inventory_control.model_product_template
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_log__product_id
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request_line__product_id
+#: model_terms:ir.ui.view,arch_db:negative_inventory_control.negative_inventory_log_view_search
+msgid "Product"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model,name:negative_inventory_control.model_product_category
+msgid "Product Category"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_log__quant_id
+msgid "Quant"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model,name:negative_inventory_control.model_stock_quant
+msgid "Quants"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_log__reason
+msgid "Reason"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request__reason
+msgid "Reason for requesting"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model_terms:ir.ui.view,arch_db:negative_inventory_control.negative_inventory_request_view_form
+#: model_terms:ir.ui.view,arch_db:negative_inventory_control.negative_inventory_request_view_kanban
+msgid "Reject"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields.selection,name:negative_inventory_control.selection__negative_inventory_log__outcome__rejected
+#: model:ir.model.fields.selection,name:negative_inventory_control.selection__negative_inventory_request__state__rejected
+msgid "Rejected"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_log__request_id
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request_line__request_id
+msgid "Request"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request__request_date
+msgid "Request Date"
+msgstr ""
+
+#. module: negative_inventory_control
+#. odoo-python
+#: code:addons/negative_inventory_control/models/negative_inventory_request.py:0
+msgid "Request rejected by %s."
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request_line__quantity_requested
+msgid "Requested"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request__requested_by
+msgid "Requested By"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model,name:negative_inventory_control.model_stock_scrap
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_log__scrap_id
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request__scrap_id
+msgid "Scrap"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request__state
+msgid "State"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model_terms:ir.ui.view,arch_db:negative_inventory_control.negative_inventory_request_view_search
+msgid "Status"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,help:negative_inventory_control.field_negative_inventory_request__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model,name:negative_inventory_control.model_stock_move
+msgid "Stock Move"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model_terms:ir.ui.view,arch_db:negative_inventory_control.negative_inventory_request_view_form
+msgid "Submit for Approval"
+msgstr ""
+
+#. module: negative_inventory_control
+#. odoo-python
+#: code:addons/negative_inventory_control/models/stock_picking.py:0
+msgid "The following will result in negative on-hand quantity:"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,help:negative_inventory_control.field_stock_quant__effective_negative_stock_policy
+msgid ""
+"The policy that actually applies to this exact product/location combination,"
+" after resolving the full Product / Category / Location / Company hierarchy "
+"(strictest wins). This is the one place product and location are always "
+"paired, so it's the only reliable place to show what policy is really in "
+"effect - a policy set on a product or location alone can't say that on its "
+"own, since the other side of the pair can always override it."
+msgstr ""
+
+#. module: negative_inventory_control
+#. odoo-python
+#: code:addons/negative_inventory_control/models/stock_move.py:0
+#: code:addons/negative_inventory_control/models/stock_picking.py:0
+#: code:addons/negative_inventory_control/models/stock_quant.py:0
+#: code:addons/negative_inventory_control/models/stock_scrap.py:0
+msgid ""
+"This operation is blocked by the Negative Stock Policy configured for the "
+"following product(s)/location(s):"
+msgstr ""
+
+#. module: negative_inventory_control
+#. odoo-python
+#: code:addons/negative_inventory_control/models/stock_picking.py:0
+msgid ""
+"This operation requires approval and is already pending review (%s). It will"
+" complete automatically once approved."
+msgstr ""
+
+#. module: negative_inventory_control
+#. odoo-python
+#: code:addons/negative_inventory_control/models/stock_scrap.py:0
+msgid ""
+"This scrap requires approval and is already pending review (%s). It will "
+"complete automatically once approved."
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields.selection,name:negative_inventory_control.selection__negative_inventory_request__state__to_approve
+#: model_terms:ir.ui.view,arch_db:negative_inventory_control.negative_inventory_request_view_search
+msgid "To Approve"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_log__transaction_quantity
+msgid "Transaction Quantity"
+msgstr ""
+
+#. module: negative_inventory_control
+#. odoo-python
+#: code:addons/negative_inventory_control/models/negative_inventory_request.py:0
+msgid "Transaction completed automatically after approval."
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model,name:negative_inventory_control.model_stock_picking
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request__picking_id
+msgid "Transfer"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,help:negative_inventory_control.field_negative_inventory_request__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_log__user_id
+msgid "User"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields.selection,name:negative_inventory_control.selection__product_category__negative_stock_policy__warn
+#: model:ir.model.fields.selection,name:negative_inventory_control.selection__product_template__negative_stock_policy__warn
+#: model:ir.model.fields.selection,name:negative_inventory_control.selection__res_company__negative_stock_policy__warn
+#: model:ir.model.fields.selection,name:negative_inventory_control.selection__stock_location__negative_stock_policy__warn
+#: model:ir.model.fields.selection,name:negative_inventory_control.selection__stock_quant__effective_negative_stock_policy__warn
+msgid "Warn"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields.selection,name:negative_inventory_control.selection__negative_inventory_log__outcome__warned
+#: model_terms:ir.ui.view,arch_db:negative_inventory_control.negative_inventory_log_view_search
+msgid "Warned"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,field_description:negative_inventory_control.field_negative_inventory_request__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model:ir.model.fields,help:negative_inventory_control.field_negative_inventory_request__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: negative_inventory_control
+#: model_terms:ir.ui.view,arch_db:negative_inventory_control.negative_inventory_request_view_form
+msgid "Why should this negative-stock transaction be allowed?"
+msgstr ""
