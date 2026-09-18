@@ -33,7 +33,7 @@ See README.md for the full configuration hierarchy and design notes.
     'license': 'LGPL-3',
     'depends': ['stock', 'mail'],
     'images': [
-        'static/description/banner.png',
+        'images/main_screenshot.png',
     ],
     'data': [
         'security/ir.model.access.csv',
