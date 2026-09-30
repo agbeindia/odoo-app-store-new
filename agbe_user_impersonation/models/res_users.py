@@ -9,7 +9,7 @@ from .impersonation_log import (
     IMPERSONATOR_SESSION_KEY,
 )
 
-IMPERSONATION_GROUP = 'user_impersonation.group_user_impersonation'
+IMPERSONATION_GROUP = 'agbe_user_impersonation.group_user_impersonation'
 
 
 class ResUsers(models.Model):

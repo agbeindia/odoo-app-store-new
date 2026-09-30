@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
 
-    <t t-name="user_impersonation.ImpersonationBanner">
+    <t t-name="agbe_user_impersonation.ImpersonationBanner">
         <div t-if="info" class="o_impersonation_banner" role="status">
             <span class="o_impersonation_banner_icon fa fa-user-secret" aria-hidden="true"/>
             <span class="o_impersonation_banner_text">

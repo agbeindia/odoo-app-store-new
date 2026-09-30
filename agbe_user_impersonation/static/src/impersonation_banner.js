@@ -12,7 +12,7 @@ import { session } from "@web/session";
  * ORM, they are the same user the administrator is currently working as.
  */
 export class ImpersonationBanner extends Component {
-    static template = "user_impersonation.ImpersonationBanner";
+    static template = "agbe_user_impersonation.ImpersonationBanner";
     static props = {};
 
     setup() {
@@ -25,6 +25,6 @@ export class ImpersonationBanner extends Component {
     }
 }
 
-registry.category("main_components").add("user_impersonation.ImpersonationBanner", {
+registry.category("main_components").add("agbe_user_impersonation.ImpersonationBanner", {
     Component: ImpersonationBanner,
 });

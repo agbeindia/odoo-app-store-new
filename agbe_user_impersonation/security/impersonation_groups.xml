@@ -33,7 +33,7 @@
          Settings but not this, and the escalation guard still stops anyone
          from reaching Settings through a user who has it. -->
     <record id="base.group_system" model="res.groups">
-        <field name="implied_ids" eval="[(4, ref('user_impersonation.group_user_impersonation'))]"/>
+        <field name="implied_ids" eval="[(4, ref('agbe_user_impersonation.group_user_impersonation'))]"/>
     </record>
 
 </odoo>

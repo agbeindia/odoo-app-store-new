@@ -14,7 +14,7 @@
                         type="object"
                         string="Log in as"
                         class="btn-secondary"
-                        groups="user_impersonation.group_user_impersonation"
+                        groups="agbe_user_impersonation.group_user_impersonation"
                         invisible="not impersonation_available"
                         confirm="You are about to continue in this user's account. You will see Odoo exactly as they see it, and everything you do will be recorded under their name until you return to your own account."/>
             </xpath>

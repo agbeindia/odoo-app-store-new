@@ -41,7 +41,7 @@ never disagree.
 
 ## Installation
 
-1. Copy `user_impersonation` into your addons path.
+1. Copy `agbe_user_impersonation` into your addons path.
 2. Restart the server and update the apps list.
 3. Install **Login as User**.
 Settings users (`base.group_system`) receive the **Log in as Another User**
@@ -75,5 +75,5 @@ is.
 ## Tests
 
 ```
-odoo-bin -d <db> -i user_impersonation --test-enable --test-tags /user_impersonation
+odoo-bin -d <db> -i agbe_user_impersonation --test-enable --test-tags /agbe_user_impersonation
 ```

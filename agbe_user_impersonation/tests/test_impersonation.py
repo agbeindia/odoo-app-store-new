@@ -2,7 +2,7 @@ from odoo import SUPERUSER_ID
 from odoo.exceptions import AccessError, UserError
 from odoo.tests import TransactionCase, tagged
 
-from odoo.addons.user_impersonation.models.impersonation_log import (
+from odoo.addons.agbe_user_impersonation.models.impersonation_log import (
     IMPERSONATION_LOG_SESSION_KEY,
     IMPERSONATOR_SESSION_KEY,
 )
@@ -16,7 +16,7 @@ class TestImpersonation(TransactionCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.group = cls.env.ref('user_impersonation.group_user_impersonation')
+        cls.group = cls.env.ref('agbe_user_impersonation.group_user_impersonation')
         Users = cls.env['res.users'].with_context(no_reset_password=True)
 
         cls.impersonator = Users.create({
@@ -121,9 +121,9 @@ class TestImpersonation(TransactionCase):
             after = self.env['res.users'].browse(request.session.uid)
 
             self.assertTrue(self.impersonator.has_group(
-                'user_impersonation.group_user_impersonation'))
+                'agbe_user_impersonation.group_user_impersonation'))
             self.assertFalse(
-                after.has_group('user_impersonation.group_user_impersonation'),
+                after.has_group('agbe_user_impersonation.group_user_impersonation'),
                 'Ravi cannot impersonate, so the session must not either.')
 
     # ------------------------------------------------------------------

@@ -88,7 +88,7 @@
               name="Impersonation Log"
               parent="base.menu_users"
               action="action_user_impersonation_log"
-              groups="user_impersonation.group_user_impersonation"
+              groups="agbe_user_impersonation.group_user_impersonation"
               sequence="50"/>
 
 </odoo>

@@ -40,9 +40,9 @@ Built for people who have to answer for it afterwards
     ],
     'assets': {
         'web.assets_backend': [
-            'user_impersonation/static/src/impersonation_banner.scss',
-            'user_impersonation/static/src/impersonation_banner.js',
-            'user_impersonation/static/src/impersonation_banner.xml',
+            'agbe_user_impersonation/static/src/impersonation_banner.scss',
+            'agbe_user_impersonation/static/src/impersonation_banner.js',
+            'agbe_user_impersonation/static/src/impersonation_banner.xml',
         ],
     },
     'installable': True,
