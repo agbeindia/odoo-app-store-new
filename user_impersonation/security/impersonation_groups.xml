@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="module_category_user_impersonation" model="ir.module.category">
+        <field name="name">Login as User</field>
+        <field name="description">Who may continue their session inside another user's account.</field>
+        <field name="sequence">40</field>
+    </record>
+
+    <!-- Odoo 19 groups hang off a privilege, which in turn points at the
+         module category. The privilege is what the user form shows as a
+         labelled dropdown. -->
+    <record id="privilege_user_impersonation" model="res.groups.privilege">
+        <field name="name">Log in as Another User</field>
+        <field name="description">Continue your session in another user's account without their password.</field>
+        <field name="category_id" ref="module_category_user_impersonation"/>
+        <field name="placeholder">No</field>
+        <field name="sequence">40</field>
+    </record>
+
+    <record id="group_user_impersonation" model="res.groups">
+        <field name="name">Allowed</field>
+        <field name="privilege_id" ref="privilege_user_impersonation"/>
+        <field name="comment">Members can continue their session in another user's
+            account without that user's password. Every such session is written
+            to the impersonation log, and nobody can enter an account that holds
+            more rights than their own.</field>
+    </record>
+
+    <!-- Settings users get this on install, so the feature is usable the
+         moment the module is installed rather than looking broken. It stays a
+         separate group on purpose: revoke it from someone who should keep
+         Settings but not this, and the escalation guard still stops anyone
+         from reaching Settings through a user who has it. -->
+    <record id="base.group_system" model="res.groups">
+        <field name="implied_ids" eval="[(4, ref('user_impersonation.group_user_impersonation'))]"/>
+    </record>
+
+</odoo>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_user_impersonation_log_list" model="ir.ui.view">
+        <field name="name">user.impersonation.log.list</field>
+        <field name="model">user.impersonation.log</field>
+        <field name="arch" type="xml">
+            <list string="Impersonation Log" create="false" edit="false" delete="false">
+                <field name="start_datetime"/>
+                <field name="impersonator_id"/>
+                <field name="target_user_id"/>
+                <field name="end_datetime" optional="show"/>
+                <field name="duration_minutes" optional="show" sum="Total"/>
+                <field name="ip_address" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_user_impersonation_log_form" model="ir.ui.view">
+        <field name="name">user.impersonation.log.form</field>
+        <field name="model">user.impersonation.log</field>
+        <field name="arch" type="xml">
+            <form string="Impersonation" create="false" edit="false" delete="false">
+                <sheet>
+                    <group>
+                        <group string="Who">
+                            <field name="impersonator_id"/>
+                            <field name="target_user_id"/>
+                            <field name="ip_address"/>
+                        </group>
+                        <group string="When">
+                            <field name="start_datetime"/>
+                            <field name="end_datetime"/>
+                            <field name="duration_minutes"/>
+                        </group>
+                    </group>
+                    <group string="Session">
+                        <field name="session_hash"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_user_impersonation_log_search" model="ir.ui.view">
+        <field name="name">user.impersonation.log.search</field>
+        <field name="model">user.impersonation.log</field>
+        <field name="arch" type="xml">
+            <search string="Impersonation Log">
+                <field name="impersonator_id"/>
+                <field name="target_user_id"/>
+                <field name="ip_address"/>
+                <filter name="filter_still_open" string="Never Returned From"
+                        domain="[('end_datetime', '=', False)]"/>
+                <separator/>
+                <filter name="filter_start_date" string="Started" date="start_datetime"/>
+                <separator/>
+                <group>
+                    <filter name="group_impersonator" string="Logged In As Themselves"
+                            context="{'group_by': 'impersonator_id'}"/>
+                    <filter name="group_target" string="Worked As"
+                            context="{'group_by': 'target_user_id'}"/>
+                    <filter name="group_start" string="Start Date"
+                            context="{'group_by': 'start_datetime:day'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_user_impersonation_log" model="ir.actions.act_window">
+        <field name="name">Impersonation Log</field>
+        <field name="res_model">user.impersonation.log</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_user_impersonation_log_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Nobody has logged in as another user yet
+            </p>
+            <p>
+                Every time someone continues their session inside another
+                user's account, it is recorded here: who did it, whose account
+                it was, from which address, and how long it lasted.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_user_impersonation_log"
+              name="Impersonation Log"
+              parent="base.menu_users"
+              action="action_user_impersonation_log"
+              groups="user_impersonation.group_user_impersonation"
+              sequence="50"/>
+
+</odoo>

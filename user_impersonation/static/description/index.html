@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Login as User - User Impersonation</title>
+</head>
+<body style="margin:0; padding:0; background-color:#f6f4f7; font-family:-apple-system,'Segoe UI',Helvetica,Arial,sans-serif; color:#19121c; font-size:15px; line-height:1.6;">
+<div style="max-width:880px; margin:0 auto; padding:28px 20px 60px 20px;">
+
+  <!-- ================= MAIN BANNER ================= -->
+  <div style="margin:0 0 28px 0; text-align:center;">
+    <img src="banner.png" alt="Login as User Banner" style="width:100%; max-width:100%; height:auto; border-radius:12px; display:block; border:1px solid #dfd6de; box-shadow:0 4px 14px rgba(0,0,0,0.06);"/>
+  </div>
+
+  <!-- ================= MASTHEAD ================= -->
+  <table cellpadding="0" cellspacing="0" border="0" style="width:100%; margin:0 0 6px 0;">
+    <tr>
+      <td style="width:64px; vertical-align:top;">
+        <img src="icon.png" alt="Login as User icon" width="56" height="56" style="width:56px; height:56px; border-radius:12px; display:block;"/>
+      </td>
+      <td style="vertical-align:top; padding-left:16px;">
+        <h1 style="margin:0 0 6px 0; font-size:26px; font-weight:700; color:#19121c;">Login as User &mdash; User Impersonation</h1>
+        <p style="margin:0; font-size:14.5px; color:#5b5260; max-width:58ch;">Continue your session inside another user's account without logging out and without knowing their password, with a pinned session banner and a complete audit trail &mdash; for Odoo 19.</p>
+      </td>
+    </tr>
+  </table>
+
+  <p style="margin:14px 0 0 0; font-size:12.5px; color:#5b5260; font-family:monospace;">
+    <b style="color:#19121c;">Version</b> 19.0.1.0.2
+    &nbsp;&nbsp;&middot;&nbsp;&nbsp;
+    <b style="color:#19121c;">License</b> LGPL-3
+    &nbsp;&nbsp;&middot;&nbsp;&nbsp;
+    <b style="color:#19121c;">Depends on</b> base, web, mail
+    &nbsp;&nbsp;&middot;&nbsp;&nbsp;
+    <b style="color:#19121c;">Core files modified</b> 0
+  </p>
+
+  <hr style="border:none; border-top:1px solid #dfd6de; margin:24px 0;"/>
+
+  <!-- ================= WHY THIS EXISTS ================= -->
+  <div style="margin:0 0 36px 0;">
+    <p style="margin:0 0 8px 0; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:#714B67; font-weight:700; font-family:monospace;">Why this exists</p>
+    <h2 style="margin:0 0 10px 0; font-size:20px; color:#19121c;">Troubleshooting user issues shouldn't require asking for their password</h2>
+    <p style="margin:0; font-size:14.5px; color:#5b5260; max-width:68ch;">Every administrator and support engineer knows the frustration: an employee reports <i>"I can't validate this delivery order"</i> or <i>"this menu has vanished"</i>, but everything looks fine from an admin account. Asking for the user's password breaches security policies; resetting their password interrupts their work. Core Odoo provides no built-in way to impersonate another user. This module solves that cleanly, safely, and transparently.</p>
+  </div>
+
+  <!-- ================= THE FOUR PILLARS ================= -->
+  <div style="margin:0 0 36px 0; padding-top:28px; border-top:1px solid #dfd6de;">
+    <p style="margin:0 0 8px 0; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:#714B67; font-weight:700; font-family:monospace;">Core Capabilities</p>
+    <h2 style="margin:0 0 10px 0; font-size:20px; color:#19121c;">Built for support teams that have to answer for security afterwards</h2>
+    <p style="margin:0 0 18px 0; font-size:14.5px; color:#5b5260; max-width:68ch;">Switch into any user's session in one click, see exactly what they see, and return back instantly &mdash; with total accountability on record.</p>
+
+    <!-- Card 1 -->
+    <div style="display:inline-block; width:47%; vertical-align:top; margin:0 3% 14px 0; padding:16px 18px; background-color:#ffffff; border:1px solid #dfd6de; border-radius:10px; box-sizing:border-box;">
+      <span style="display:inline-block; font-size:10px; font-weight:700; letter-spacing:1px; padding:4px 10px; border-radius:999px; color:#ffffff; background-color:#059669; font-family:monospace; margin:0 0 8px 0;">INSTANT SWITCH</span>
+      <h3 style="margin:0 0 6px 0; font-size:14.5px; color:#19121c;">No Passwords Required</h3>
+      <p style="margin:0 0 8px 0; font-size:13px; color:#5b5260;">Log in to any user account with a single button click from their user profile. No credential sharing and no password resets.</p>
+      <p style="margin:0; font-size:11.5px; background-color:#f1e9ef; border-radius:6px; padding:6px 9px; color:#19121c;"><b style="display:block; font-size:9.5px; text-transform:uppercase; letter-spacing:1px; color:#714B67; margin:0 0 2px 0;">Session Switch</b>Session swaps on the server and reloads directly into their workspace.</p>
+    </div>
+
+    <!-- Card 2 -->
+    <div style="display:inline-block; width:47%; vertical-align:top; margin:0 0 14px 0; padding:16px 18px; background-color:#ffffff; border:1px solid #dfd6de; border-radius:10px; box-sizing:border-box;">
+      <span style="display:inline-block; font-size:10px; font-weight:700; letter-spacing:1px; padding:4px 10px; border-radius:999px; color:#ffffff; background-color:#714B67; font-family:monospace; margin:0 0 8px 0;">TRUE PERSPECTIVE</span>
+      <h3 style="margin:0 0 6px 0; font-size:14.5px; color:#19121c;">Their Exact Rights &amp; Menus</h3>
+      <p style="margin:0 0 8px 0; font-size:13px; color:#5b5260;">You operate under their record rules, allowed companies, access rights, and language &mdash; not yours, and not the two combined.</p>
+      <p style="margin:0; font-size:11.5px; background-color:#f1e9ef; border-radius:6px; padding:6px 9px; color:#19121c;"><b style="display:block; font-size:9.5px; text-transform:uppercase; letter-spacing:1px; color:#714B67; margin:0 0 2px 0;">Real Replication</b>Replicate bugs under the exact conditions the employee experiences.</p>
+    </div>
+
+    <!-- Card 3 -->
+    <div style="display:inline-block; width:47%; vertical-align:top; margin:0 3% 14px 0; padding:16px 18px; background-color:#ffffff; border:1px solid #dfd6de; border-radius:10px; box-sizing:border-box;">
+      <span style="display:inline-block; font-size:10px; font-weight:700; letter-spacing:1px; padding:4px 10px; border-radius:999px; color:#ffffff; background-color:#2563eb; font-family:monospace; margin:0 0 8px 0;">PINNED BANNER</span>
+      <h3 style="margin:0 0 6px 0; font-size:14.5px; color:#19121c;">Always Visible Session Alert</h3>
+      <p style="margin:0 0 8px 0; font-size:13px; color:#5b5260;">A prominent bar stays pinned to the bottom of the screen throughout the session. Non-dismissible so nobody forgets whose account they are in.</p>
+      <p style="margin:0; font-size:11.5px; background-color:#f1e9ef; border-radius:6px; padding:6px 9px; color:#19121c;"><b style="display:block; font-size:9.5px; text-transform:uppercase; letter-spacing:1px; color:#714B67; margin:0 0 2px 0;">One-Click Return</b>Includes a button to safely restore your administrator session instantly.</p>
+    </div>
+
+    <!-- Card 4 -->
+    <div style="display:inline-block; width:47%; vertical-align:top; margin:0 0 14px 0; padding:16px 18px; background-color:#ffffff; border:1px solid #dfd6de; border-radius:10px; box-sizing:border-box;">
+      <span style="display:inline-block; font-size:10px; font-weight:700; letter-spacing:1px; padding:4px 10px; border-radius:999px; color:#ffffff; background-color:#dc2626; font-family:monospace; margin:0 0 8px 0;">FULL AUDIT TRAIL</span>
+      <h3 style="margin:0 0 6px 0; font-size:14.5px; color:#19121c;">Permanent &amp; Read-Only Log</h3>
+      <p style="margin:0 0 8px 0; font-size:13px; color:#5b5260;">Every impersonation is logged: who did it, whose account was entered, remote IP address, start/end timestamps, and duration.</p>
+      <p style="margin:0; font-size:11.5px; background-color:#f1e9ef; border-radius:6px; padding:6px 9px; color:#19121c;"><b style="display:block; font-size:9.5px; text-transform:uppercase; letter-spacing:1px; color:#714B67; margin:0 0 2px 0;">Tamper-Proof</b>Cannot be created, modified, or deleted from the interface by anyone.</p>
+    </div>
+
+    <p style="margin:16px 0 0 0; font-size:13px; font-family:monospace; color:#19121c; background-color:#f1e9ef; border-radius:8px; padding:10px 14px;">
+      Zero Passwords Shared &nbsp;&middot;&nbsp; Strict Server Guards &nbsp;&middot;&nbsp; <b style="color:#714B67;">100% Audited &amp; Reversible</b>
+    </p>
+  </div>
+
+  <!-- ================= STRICT SECURITY GUARDS ================= -->
+  <div style="margin:0 0 36px 0; padding-top:28px; border-top:1px solid #dfd6de;">
+    <p style="margin:0 0 8px 0; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:#714B67; font-weight:700; font-family:monospace;">Security Architecture</p>
+    <h2 style="margin:0 0 10px 0; font-size:20px; color:#19121c;">What the module strictly refuses</h2>
+    <p style="margin:0 0 18px 0; font-size:14.5px; color:#5b5260; max-width:68ch;">Impersonation is downward-only. The server strictly forbids privilege escalation and unsafe states at both the UI and RPC controller levels:</p>
+
+    <div style="background-color:#ffffff; border:1px solid #dfd6de; border-radius:10px; padding:18px 20px; margin:0 0 12px 0;">
+      <table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+        <tr>
+          <td style="width:28px; vertical-align:top; font-size:16px; color:#dc2626; padding-right:12px;">&#10006;</td>
+          <td style="vertical-align:top;">
+            <b style="color:#19121c; font-size:14px;">No Privilege Climbing</b>
+            <p style="margin:4px 0 0 0; font-size:13px; color:#5b5260;">A user cannot log in as anyone holding more rights than themselves. A support agent without administration rights cannot reach Settings by impersonating a system administrator.</p>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div style="background-color:#ffffff; border:1px solid #dfd6de; border-radius:10px; padding:18px 20px; margin:0 0 12px 0;">
+      <table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+        <tr>
+          <td style="width:28px; vertical-align:top; font-size:16px; color:#dc2626; padding-right:12px;">&#10006;</td>
+          <td style="vertical-align:top;">
+            <b style="color:#19121c; font-size:14px;">System Superuser (OdooBot) Protected</b>
+            <p style="margin:4px 0 0 0; font-size:13px; color:#5b5260;">The system superuser (<code>SUPERUSER_ID</code> / OdooBot) cannot be impersonated under any circumstances, preventing unaccountable superuser actions.</p>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div style="background-color:#ffffff; border:1px solid #dfd6de; border-radius:10px; padding:18px 20px; margin:0 0 12px 0;">
+      <table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+        <tr>
+          <td style="width:28px; vertical-align:top; font-size:16px; color:#dc2626; padding-right:12px;">&#10006;</td>
+          <td style="vertical-align:top;">
+            <b style="color:#19121c; font-size:14px;">No Nested Impersonations</b>
+            <p style="margin:4px 0 0 0; font-size:13px; color:#5b5260;">A second impersonation from inside an active one is strictly blocked. You must return to your own account before switching to another user, keeping audit chains simple and deterministic.</p>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div style="background-color:#ffffff; border:1px solid #dfd6de; border-radius:10px; padding:18px 20px; margin:0 0 12px 0;">
+      <table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+        <tr>
+          <td style="width:28px; vertical-align:top; font-size:16px; color:#dc2626; padding-right:12px;">&#10006;</td>
+          <td style="vertical-align:top;">
+            <b style="color:#19121c; font-size:14px;">Archived, Public &amp; Self Impersonations Blocked</b>
+            <p style="margin:4px 0 0 0; font-size:13px; color:#5b5260;">Logging in as yourself, as archived users, or as the public website user is rejected immediately by server-side guards.</p>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ================= QUICK START ================= -->
+  <div style="margin:0 0 36px 0; padding-top:28px; border-top:1px solid #dfd6de;">
+    <p style="margin:0 0 8px 0; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:#714B67; font-weight:700; font-family:monospace;">Quick start</p>
+    <h2 style="margin:0 0 10px 0; font-size:20px; color:#19121c;">From install to user impersonation in 5 simple steps</h2>
+    <p style="margin:0 0 20px 0; font-size:14.5px; color:#5b5260;">Exactly what to click, in order.</p>
+
+    <!-- Step 1 -->
+    <div style="background-color:#ffffff; border:1px solid #dfd6de; border-radius:10px; padding:18px 20px; margin:0 0 14px 0;">
+      <p style="margin:0 0 6px 0; font-size:11px; font-family:monospace; color:#714B67; background-color:#f1e9ef; display:inline-block; padding:3px 9px; border-radius:5px;">STEP 1 &nbsp;&middot;&nbsp; Settings &rsaquo; Users &amp; Companies &rsaquo; Users</p>
+      <h3 style="margin:8px 0 6px 0; font-size:15.5px; color:#19121c;">Open the target user</h3>
+      <p style="margin:0 0 14px 0; font-size:13.5px; color:#5b5260;">Open the user record you need to assist or troubleshoot. The <b style="color:#19121c;">Log in as</b> button is located right in the form header.</p>
+      <div style="border:1px solid #dfd6de; border-radius:8px; max-width:420px; background-color:#faf9fb;">
+        <p style="margin:0; background-color:#714b67; color:#ffffff; font-size:11px; font-weight:700; padding:7px 12px; border-radius:8px 8px 0 0;">Users &nbsp;&rsaquo;&nbsp; Marc Demo</p>
+        <div style="padding:14px 16px;">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;">
+            <span style="font-size:13px; font-weight:600; color:#19121c;">Marc Demo (demo@example.com)</span>
+            <span style="display:inline-block; font-size:11px; font-weight:700; padding:5px 14px; border-radius:6px; color:#714b67; background-color:#ffffff; border:1px solid #714b67;">Log in as</span>
+          </div>
+          <p style="margin:0; font-size:11px; color:#5b5260;">Internal User &middot; Sales / User &middot; Inventory / User</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div style="background-color:#ffffff; border:1px solid #dfd6de; border-radius:10px; padding:18px 20px; margin:0 0 14px 0;">
+      <p style="margin:0 0 6px 0; font-size:11px; font-family:monospace; color:#714B67; background-color:#f1e9ef; display:inline-block; padding:3px 9px; border-radius:5px;">STEP 2 &nbsp;&middot;&nbsp; Safety confirmation</p>
+      <h3 style="margin:8px 0 6px 0; font-size:15.5px; color:#19121c;">Confirm the session switch</h3>
+      <p style="margin:0 0 14px 0; font-size:13.5px; color:#5b5260;">A clear confirmation prompt reminds you that you will see Odoo through their account and everything you do will be audited.</p>
+      <div style="border:1px solid #dfd6de; border-radius:8px; max-width:420px; background-color:#ffffff; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
+        <p style="margin:0; background-color:#f8f9fa; color:#19121c; font-size:12px; font-weight:700; padding:8px 12px; border-bottom:1px solid #dfd6de; border-radius:8px 8px 0 0;">Confirmation</p>
+        <div style="padding:14px 16px;">
+          <p style="margin:0 0 12px 0; font-size:12px; color:#5b5260; line-height:1.5;">You are about to continue in this user's account. You will see Odoo exactly as they see it, and everything you do will be recorded under their name until you return to your own account.</p>
+          <div style="text-align:right;">
+            <span style="display:inline-block; font-size:11px; padding:5px 12px; border-radius:5px; color:#5b5260; margin-right:6px;">Cancel</span>
+            <span style="display:inline-block; font-size:11px; font-weight:700; padding:5px 14px; border-radius:5px; color:#ffffff; background-color:#714b67;">Ok</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div style="background-color:#ffffff; border:1px solid #dfd6de; border-radius:10px; padding:18px 20px; margin:0 0 14px 0;">
+      <p style="margin:0 0 6px 0; font-size:11px; font-family:monospace; color:#714B67; background-color:#f1e9ef; display:inline-block; padding:3px 9px; border-radius:5px;">STEP 3 &nbsp;&middot;&nbsp; Active Impersonation</p>
+      <h3 style="margin:8px 0 6px 0; font-size:15.5px; color:#19121c;">Work under their account</h3>
+      <p style="margin:0 0 14px 0; font-size:13.5px; color:#5b5260;">The page reloads directly into the target user's workspace. A prominent purple banner remains pinned at the bottom across all views.</p>
+      <div style="border:1px solid #dfd6de; border-radius:8px; max-width:480px; background-color:#714b67; color:#ffffff; padding:10px 16px; box-shadow:0 4px 12px rgba(113,75,103,0.3);">
+        <table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+          <tr>
+            <td style="vertical-align:middle; font-size:13px;">
+              <span style="margin-right:6px;">&#128373;</span> You are logged in as <b>Marc Demo</b>
+            </td>
+            <td style="text-align:right; vertical-align:middle;">
+              <span style="display:inline-block; font-size:11px; font-weight:700; padding:5px 12px; border-radius:5px; color:#714b67; background-color:#ffffff;">Return to my account</span>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- Step 4 -->
+    <div style="background-color:#ffffff; border:1px solid #dfd6de; border-radius:10px; padding:18px 20px; margin:0 0 14px 0;">
+      <p style="margin:0 0 6px 0; font-size:11px; font-family:monospace; color:#714B67; background-color:#f1e9ef; display:inline-block; padding:3px 9px; border-radius:5px;">STEP 4 &nbsp;&middot;&nbsp; One-Click Return</p>
+      <h3 style="margin:8px 0 6px 0; font-size:15.5px; color:#19121c;">Safely return to your own session</h3>
+      <p style="margin:0 0 14px 0; font-size:13.5px; color:#5b5260;">Press <b style="color:#19121c;">Return to my account</b> at any time. The session token is reissued, the audit record is closed with the exact end time, and you are right back in your admin account.</p>
+      <div style="border:1px solid #dfd6de; border-radius:8px; max-width:420px; padding:12px 14px; background-color:#faf9fb;">
+        <span style="display:inline-block; font-size:11px; font-weight:700; padding:3px 9px; border-radius:999px; color:#ffffff; background-color:#059669; font-family:monospace; margin-bottom:6px;">RESTORED</span>
+        <p style="margin:0; font-size:12.5px; color:#19121c;">Returned to Administrator account &middot; Session closed cleanly &middot; No cookies leaked</p>
+      </div>
+    </div>
+
+    <!-- Step 5 -->
+    <div style="background-color:#ffffff; border:1px solid #dfd6de; border-radius:10px; padding:18px 20px; margin:0 0 4px 0;">
+      <p style="margin:0 0 6px 0; font-size:11px; font-family:monospace; color:#714B67; background-color:#f1e9ef; display:inline-block; padding:3px 9px; border-radius:5px;">STEP 5 &nbsp;&middot;&nbsp; Settings &rsaquo; Users &amp; Companies &rsaquo; Impersonation Log</p>
+      <h3 style="margin:8px 0 6px 0; font-size:15.5px; color:#19121c;">Inspect the permanent audit trail</h3>
+      <p style="margin:0 0 14px 0; font-size:13.5px; color:#5b5260;">A dedicated audit menu lists all sessions with search, group-by (impersonator, target, date), and active session filters.</p>
+      <div style="border:1px solid #dfd6de; border-radius:8px; max-width:540px;">
+        <p style="margin:0; background-color:#714b67; color:#ffffff; font-size:11px; font-weight:700; padding:7px 12px; border-radius:8px 8px 0 0;">Impersonation Log</p>
+        <div style="padding:10px 12px; font-size:12px;">
+          <table cellpadding="6" cellspacing="0" border="0" style="width:100%; border-collapse:collapse;">
+            <tr style="border-bottom:1px solid #dfd6de; color:#5b5260; font-size:11px; text-transform:uppercase;">
+              <th align="left">Started</th>
+              <th align="left">Impersonator</th>
+              <th align="left">Target User</th>
+              <th align="left">Ended</th>
+              <th align="left">Duration</th>
+            </tr>
+            <tr style="border-bottom:1px solid #f1e9ef;">
+              <td>Today 11:20</td>
+              <td><b>Mitchell Admin</b></td>
+              <td>Marc Demo</td>
+              <td>Today 11:34</td>
+              <td><span style="display:inline-block; font-size:10px; font-weight:700; padding:2px 7px; border-radius:4px; color:#ffffff; background-color:#059669;">14 min</span></td>
+            </tr>
+            <tr>
+              <td>Yesterday 16:05</td>
+              <td><b>Support Lead</b></td>
+              <td>Anita Oliver</td>
+              <td>Yesterday 16:18</td>
+              <td><span style="display:inline-block; font-size:10px; font-weight:700; padding:2px 7px; border-radius:4px; color:#ffffff; background-color:#059669;">13 min</span></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= DISCREET AUDIT NOTE ================= -->
+  <div style="margin:0 0 36px 0; padding-top:28px; border-top:1px solid #dfd6de;">
+    <p style="margin:0 0 8px 0; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:#714B67; font-weight:700; font-family:monospace;">Zero Disturbance</p>
+    <h2 style="margin:0 0 14px 0; font-size:20px; color:#19121c;">Quiet chatter note &mdash; no inbox spam</h2>
+    <p style="margin:0 0 12px 0; font-size:14.5px; color:#5b5260; max-width:68ch;">When an impersonation starts, an internal note is recorded on the target user's contact record (chatter) for traceability. Crucially, it is posted with empty recipient lists &mdash; meaning the target user receives <b>no e-mails, no inbox pings, and no unread notifications</b>. Support can investigate issues without causing customer or employee confusion.</p>
+    <div style="background-color:#ffffff; border:1px solid #dfd6de; border-radius:10px; padding:14px 18px; max-width:480px;">
+      <p style="margin:0 0 4px 0; font-size:11px; color:#5b5260;"><b>Mitchell Admin</b> posted an internal note &middot; Just now</p>
+      <p style="margin:0; font-size:12.5px; color:#19121c; background-color:#f8f9fa; padding:8px 12px; border-radius:6px; border-left:3px solid #714b67;">Mitchell Admin logged in as this user.</p>
+    </div>
+  </div>
+
+  <!-- ================= UNDER THE HOOD ================= -->
+  <div style="margin:0 0 36px 0; padding-top:28px; border-top:1px solid #dfd6de;">
+    <p style="margin:0 0 8px 0; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:#714B67; font-weight:700; font-family:monospace;">Under the hood</p>
+    <h2 style="margin:0 0 16px 0; font-size:20px; color:#19121c;">Engineered for enterprise security standards</h2>
+
+    <div style="display:inline-block; width:47%; vertical-align:top; margin:0 3% 12px 0; padding:14px 16px; background-color:#ffffff; border:1px solid #dfd6de; border-radius:10px; box-sizing:border-box;">
+      <h3 style="margin:0 0 6px 0; font-size:14px; color:#19121c;">Clean Session Rotation</h3>
+      <p style="margin:0; font-size:12.5px; color:#5b5260;">The session token is recomputed against the new user directly using Odoo's native token machinery, guaranteeing the impersonated session is as valid as a real login, and no more.</p>
+    </div>
+    <div style="display:inline-block; width:47%; vertical-align:top; margin:0 0 12px 0; padding:14px 16px; background-color:#ffffff; border:1px solid #dfd6de; border-radius:10px; box-sizing:border-box;">
+      <h3 style="margin:0 0 6px 0; font-size:14px; color:#19121c;">SHA-256 Session Hashing</h3>
+      <p style="margin:0; font-size:12.5px; color:#5b5260;">The actual session ID is never written to the database. Only a cryptographic SHA-256 fingerprint is stored in the audit log, preventing credential exposure.</p>
+    </div>
+    <div style="display:inline-block; width:47%; vertical-align:top; margin:0 3% 12px 0; padding:14px 16px; background-color:#ffffff; border:1px solid #dfd6de; border-radius:10px; box-sizing:border-box;">
+      <h3 style="margin:0 0 6px 0; font-size:14px; color:#19121c;">Safe Group-Free Return Route</h3>
+      <p style="margin:0; font-size:12.5px; color:#5b5260;">Even when impersonating a portal or restricted user with no rights on <code>res.users</code>, the return route works smoothly without ACL permission errors or getting trapped.</p>
+    </div>
+    <div style="display:inline-block; width:47%; vertical-align:top; margin:0 0 12px 0; padding:14px 16px; background-color:#ffffff; border:1px solid #dfd6de; border-radius:10px; box-sizing:border-box;">
+      <h3 style="margin:0 0 6px 0; font-size:14px; color:#19121c;">Zero Core Overwrites</h3>
+      <p style="margin:0; font-size:12.5px; color:#5b5260;">No monkey patching or brittle overrides of core Odoo files. Uses standard Odoo 19 extension hooks (<code>main_components</code> registry and clean view inheritance).</p>
+    </div>
+  </div>
+
+  <!-- ================= LICENSE & TERMS ================= -->
+  <div style="margin:0 0 36px 0; padding-top:28px; border-top:1px solid #dfd6de;">
+    <p style="margin:0 0 8px 0; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:#714B67; font-weight:700; font-family:monospace;">License &amp; Terms</p>
+    <h2 style="margin:0 0 16px 0; font-size:20px; color:#19121c;">Open Source License</h2>
+
+    <div style="background-color:#ffffff; border:1px solid #dfd6de; border-radius:10px; padding:20px 22px;">
+      <div style="display:flex; align-items:center; margin:0 0 12px 0;">
+        <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:1px; padding:4px 12px; border-radius:999px; color:#ffffff; background-color:#714B67; font-family:monospace; margin-right:12px;">GNU LGPLv3</span>
+        <h3 style="margin:0; font-size:16px; color:#19121c; font-weight:700;">GNU Lesser General Public License v3</h3>
+      </div>
+      <p style="margin:0 0 12px 0; font-size:13.5px; color:#5b5260; line-height:1.6;">
+        This module is free software published by <b>AGBE Technologies</b> (<a href="https://www.agbeindia.com" target="_blank" style="color:#714B67; text-decoration:none; font-weight:600;">agbeindia.com</a>) under the <b>GNU Lesser General Public License v3 (LGPLv3)</b>.
+        Anyone is free to download, use, and modify this module.
+      </p>
+      <div style="background-color:#f1e9ef; border-radius:8px; padding:12px 16px; font-size:12.5px; color:#19121c; font-family:monospace;">
+        <b>Author:</b> AGBE Technologies &nbsp;&middot;&nbsp; <b>Website:</b> <a href="https://www.agbeindia.com" target="_blank" style="color:#714B67; text-decoration:none;">https://www.agbeindia.com</a> &nbsp;&middot;&nbsp; <b>License:</b> LGPL-3
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= FOOTER NOTE ================= -->
+  <div style="margin:0 0 16px 0; padding:16px 18px; background-color:#f1e9ef; border:1px solid #dfd6de; border-radius:10px; font-size:13px; color:#5b5260;">
+    No core files are modified. Compatible with <b>Odoo 19 Community and Enterprise</b> editions. Depends only on <span style="font-family:monospace; background-color:rgba(113,75,103,.08); padding:1px 5px; border-radius:4px; color:#714b67;">base</span>, <span style="font-family:monospace; background-color:rgba(113,75,103,.08); padding:1px 5px; border-radius:4px; color:#714b67;">web</span>, and <span style="font-family:monospace; background-color:rgba(113,75,103,.08); padding:1px 5px; border-radius:4px; color:#714b67;">mail</span>.
+  </div>
+
+  <p style="margin:20px 0 0 0; font-size:12px; color:#5b5260;">See README.md in the module for full developer notes, security explanations, and test instructions.</p>
+
+</div>
+</body>
+</html>

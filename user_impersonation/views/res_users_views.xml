@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_users_form_impersonation" model="ir.ui.view">
+        <field name="name">res.users.form.impersonation</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <!-- The modifier needs the value, so the field has to be in
+                     the view even though nothing renders it. -->
+                <field name="impersonation_available" invisible="1"/>
+                <button name="action_impersonate"
+                        type="object"
+                        string="Log in as"
+                        class="btn-secondary"
+                        groups="user_impersonation.group_user_impersonation"
+                        invisible="not impersonation_available"
+                        confirm="You are about to continue in this user's account. You will see Odoo exactly as they see it, and everything you do will be recorded under their name until you return to your own account."/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

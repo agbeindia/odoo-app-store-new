@@ -1,0 +1,218 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* user_impersonation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-30 07:00+0000\n"
+"PO-Revision-Date: 2026-09-30 07:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: user_impersonation
+#: code:addons/user_impersonation/models/res_users.py:0
+msgid "%(admin)s logged in as this user."
+msgstr ""
+
+#. module: user_impersonation
+#: code:addons/user_impersonation/models/res_users.py:0
+#, python-format
+msgid "%s is archived. Restore the user before logging in as them."
+msgstr ""
+
+#. module: user_impersonation
+#: code:addons/user_impersonation/models/impersonation_log.py:0
+msgid "Duration (min)"
+msgstr ""
+
+#. module: user_impersonation
+#: code:addons/user_impersonation/models/impersonation_log.py:0
+msgid "Empty means the session was never returned from - it expired, the browser was closed, or it is still open."
+msgstr ""
+
+#. module: user_impersonation
+#: code:addons/user_impersonation/models/impersonation_log.py:0
+msgid "Ended"
+msgstr ""
+
+#. module: user_impersonation
+#: code:addons/user_impersonation/models/impersonation_log.py:0
+msgid "Fingerprint of the browser session, used to match the return to the right log entry. The session itself is never stored."
+msgstr ""
+
+#. module: user_impersonation
+#: code:addons/user_impersonation/models/impersonation_log.py:0
+msgid "IP Address"
+msgstr ""
+
+#. module: user_impersonation
+#: code:addons/user_impersonation/views/impersonation_log_views.xml:0
+#: code:addons/user_impersonation/security/impersonation_groups.xml:0
+msgid "Impersonation Log"
+msgstr ""
+
+#. module: user_impersonation
+#: code:addons/user_impersonation/models/res_users.py:0
+msgid "Can Be Logged In As"
+msgstr ""
+
+#. module: user_impersonation
+#: code:addons/user_impersonation/models/res_users.py:0
+msgid "Technical field: whether the current user is allowed to continue their session in this account."
+msgstr ""
+
+#. module: user_impersonation
+#: code:addons/user_impersonation/models/res_users.py:0
+msgid "Logging in as another user is only possible from the web interface."
+msgstr ""
+
+#. module: user_impersonation
+#: code:addons/user_impersonation/models/res_users.py:0
+msgid "This session cannot be changed. Open Odoo in a browser and try again."
+msgstr ""
+
+#. module: user_impersonation
+#: code:addons/user_impersonation/models/res_users.py:0
+msgid "You are not allowed to log in as another user."
+msgstr ""
+
+#. module: user_impersonation
+#: code:addons/user_impersonation/models/res_users.py:0
+msgid "You are already working in another user's account. Return to your own account before switching again."
+msgstr ""
+
+#. module: user_impersonation
+#: code:addons/user_impersonation/models/res_users.py:0
+msgid "You are already logged in as yourself."
+msgstr ""
+
+#. module: user_impersonation
+#: code:addons/user_impersonation/models/res_users.py:0
+msgid "The system superuser cannot be logged in as."
+msgstr ""
+
+#. module: user_impersonation
+#: code:addons/user_impersonation/models/res_users.py:0
+msgid "The public user cannot be logged in as."
+msgstr ""
+
+#. module: user_impersonation
+#: code:addons/user_impersonation/models/res_users.py:0
+msgid "You cannot log in as a user who has more rights than you do."
+msgstr ""
+
+#. module: user_impersonation
+#: code:addons/user_impersonation/models/res_users.py:0
+msgid "No active web session."
+msgstr ""
+
+#. module: user_impersonation
+#: code:addons/user_impersonation/models/res_users.py:0
+msgid "This session is not an impersonation."
+msgstr ""
+
+#. module: user_impersonation
+#: code:addons/user_impersonation/models/impersonation_log.py:0
+msgid "Logged In As Themselves"
+msgstr ""
+
+#. module: user_impersonation
+#: code:addons/user_impersonation/models/impersonation_log.py:0
+msgid "The administrator who started this session."
+msgstr ""
+
+#. module: user_impersonation
+#: code:addons/user_impersonation/models/impersonation_log.py:0
+msgid "Worked As"
+msgstr ""
+
+#. module: user_impersonation
+#: code:addons/user_impersonation/models/impersonation_log.py:0
+msgid "The user whose account was entered."
+msgstr ""
+
+#. module: user_impersonation
+#: code:addons/user_impersonation/models/impersonation_log.py:0
+msgid "Started"
+msgstr ""
+
+#. module: user_impersonation
+#: code:addons/user_impersonation/models/impersonation_log.py:0
+msgid "Session Fingerprint"
+msgstr ""
+
+#. module: user_impersonation
+#: code:addons/user_impersonation/models/impersonation_log.py:0
+msgid "User Impersonation Log"
+msgstr ""
+
+#. module: user_impersonation
+#: code:addons/user_impersonation/views/res_users_views.xml:0
+msgid "Log in as"
+msgstr ""
+
+#. module: user_impersonation
+#: code:addons/user_impersonation/views/res_users_views.xml:0
+msgid "You are about to continue in this user's account. You will see Odoo exactly as they see it, and everything you do will be recorded under their name until you return to your own account."
+msgstr ""
+
+#. module: user_impersonation
+#: code:addons/user_impersonation/views/impersonation_log_views.xml:0
+msgid "Never Returned From"
+msgstr ""
+
+#. module: user_impersonation
+#: code:addons/user_impersonation/views/impersonation_log_views.xml:0
+msgid "Start Date"
+msgstr ""
+
+#. module: user_impersonation
+#: code:addons/user_impersonation/views/impersonation_log_views.xml:0
+msgid "Nobody has logged in as another user yet"
+msgstr ""
+
+#. module: user_impersonation
+#: code:addons/user_impersonation/views/impersonation_log_views.xml:0
+msgid "Every time someone continues their session inside another user's account, it is recorded here: who did it, whose account it was, from which address, and how long it lasted."
+msgstr ""
+
+#. module: user_impersonation
+#: code:addons/user_impersonation/security/impersonation_groups.xml:0
+msgid "Login as User"
+msgstr ""
+
+#. module: user_impersonation
+#: code:addons/user_impersonation/security/impersonation_groups.xml:0
+msgid "Who may continue their session inside another user's account."
+msgstr ""
+
+#. module: user_impersonation
+#: code:addons/user_impersonation/security/impersonation_groups.xml:0
+msgid "Log in as Another User"
+msgstr ""
+
+#. module: user_impersonation
+#: code:addons/user_impersonation/security/impersonation_groups.xml:0
+msgid "Continue your session in another user's account without their password."
+msgstr ""
+
+#. module: user_impersonation
+#: code:addons/user_impersonation/security/impersonation_groups.xml:0
+msgid "Allowed"
+msgstr ""
+
+#. module: user_impersonation
+#: code:addons/user_impersonation/static/src/impersonation_banner.xml:0
+msgid "You are logged in as"
+msgstr ""
+
+#. module: user_impersonation
+#: code:addons/user_impersonation/static/src/impersonation_banner.xml:0
+msgid "Return to my account"
+msgstr ""

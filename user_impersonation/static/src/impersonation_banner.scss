@@ -1,0 +1,38 @@
+// Pinned to the bottom for the whole impersonated session: nobody should be
+// able to forget whose account they are typing in. Deliberately loud, and
+// deliberately not dismissible.
+.o_impersonation_banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1060; // above the web client, below modals (1055 is Bootstrap's)
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.35rem 0.75rem;
+    background-color: #714B67; // Odoo primary, so it reads as chrome not error
+    color: #fff;
+    font-size: 0.875rem;
+    line-height: 1.4;
+    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.2);
+
+    .o_impersonation_banner_text {
+        b {
+            font-weight: 600;
+        }
+    }
+
+    .o_impersonation_banner_return {
+        white-space: nowrap;
+    }
+}
+
+// Keep the last row of a list or the bottom of a form reachable underneath it.
+.o_impersonation_active {
+    .o_action_manager {
+        padding-bottom: 2.5rem;
+    }
+}
