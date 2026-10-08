@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_audit_root" name="Audit Trail" sequence="95"
+              web_icon="agbe_audit_trail,static/description/icon.png"
+              groups="agbe_audit_trail.group_audit_user"/>
+
+    <menuitem id="menu_audit_log_lines" name="Audit Logs" parent="menu_audit_root"
+              action="action_audit_log_line" sequence="10"/>
+
+    <menuitem id="menu_audit_logs" name="Operations" parent="menu_audit_root"
+              action="action_audit_log" sequence="20"/>
+
+    <menuitem id="menu_audit_reporting" name="Reporting" parent="menu_audit_root" sequence="30"/>
+    <menuitem id="menu_audit_summary" name="Summary" parent="menu_audit_reporting"
+              action="action_audit_summary" sequence="10"/>
+    <menuitem id="menu_audit_export" name="Export (Excel / PDF)" parent="menu_audit_reporting"
+              action="action_audit_export_wizard" sequence="20"/>
+
+    <menuitem id="menu_audit_config" name="Configuration" parent="menu_audit_root" sequence="90"
+              groups="agbe_audit_trail.group_audit_manager"/>
+    <menuitem id="menu_audit_rules" name="Audit Rules" parent="menu_audit_config"
+              action="action_audit_rule" sequence="10"/>
+
+</odoo>

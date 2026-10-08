@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Audit Trail &amp; Field Level Change Tracking</title>
+<style>
+  .aat-page {
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #1f2937;
+    line-height: 1.6;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+  .aat-page * { box-sizing: border-box; }
+  .aat-page h1, .aat-page h2, .aat-page h3 { color: #2b1d28; font-weight: 700; line-height: 1.25; }
+
+  .aat-hero { display: flex; align-items: center; gap: 32px; padding: 56px 0 40px; flex-wrap: wrap; }
+  .aat-hero img { width: 108px; height: 108px; border-radius: 22px; box-shadow: 0 10px 30px rgba(43, 29, 40, 0.2); flex-shrink: 0; }
+  .aat-hero-text { flex: 1; min-width: 260px; }
+  .aat-kicker {
+    display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    color: #714b67; background: #f3ecf1; padding: 4px 12px; border-radius: 100px; margin-bottom: 12px;
+  }
+  .aat-hero h1 { font-size: 34px; margin: 0 0 10px; }
+  .aat-tagline { font-size: 18px; color: #4b4450; margin: 0; max-width: 680px; }
+
+  .aat-strip {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: #e7e1e6;
+    border-radius: 14px; overflow: hidden; margin-bottom: 48px;
+  }
+  .aat-strip > div { background: #ffffff; padding: 20px 18px; text-align: center; }
+  .aat-strip .num { font-size: 24px; font-weight: 800; color: #714b67; }
+  .aat-strip .label { font-size: 13px; color: #6b6470; margin-top: 4px; }
+  @media (max-width: 720px) { .aat-strip { grid-template-columns: repeat(2, 1fr); } }
+
+  .aat-section { margin-bottom: 56px; }
+  .aat-section-head { max-width: 680px; margin-bottom: 28px; }
+  .aat-section-head h2 { font-size: 26px; margin: 0 0 10px; }
+  .aat-section-head p { color: #5b5460; margin: 0; font-size: 15.5px; }
+
+  .aat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  @media (max-width: 900px) { .aat-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .aat-grid { grid-template-columns: 1fr; } }
+  .aat-card { border: 1px solid #ebe5ea; border-radius: 14px; padding: 22px; background: #fff; }
+  .aat-card h3 { font-size: 16.5px; margin: 0 0 8px; }
+  .aat-card p { margin: 0; color: #5b5460; font-size: 14.5px; }
+  .aat-card .ico {
+    width: 38px; height: 38px; border-radius: 10px; background: #f3ecf1; color: #714b67;
+    display: flex; align-items: center; justify-content: center; font-weight: 800; margin-bottom: 12px;
+  }
+
+  .aat-diff { width: 100%; border-collapse: collapse; font-size: 14px; border: 1px solid #ebe5ea; border-radius: 10px; overflow: hidden; }
+  .aat-diff th { background: #714b67; color: #fff; text-align: left; padding: 10px 12px; }
+  .aat-diff td { padding: 10px 12px; border-top: 1px solid #ebe5ea; vertical-align: top; }
+  .aat-diff .old { background: #fdecea; }
+  .aat-diff .new { background: #e8f5e9; }
+  .aat-diff del { background: #f5b7b1; }
+  .aat-diff ins { background: #a9dfbf; text-decoration: none; }
+
+  .aat-steps { counter-reset: step; list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+  .aat-steps li { counter-increment: step; position: relative; padding: 14px 16px 14px 60px; border: 1px solid #ebe5ea; border-radius: 12px; }
+  .aat-steps li::before {
+    content: counter(step); position: absolute; left: 16px; top: 13px; width: 30px; height: 30px; border-radius: 50%;
+    background: #714b67; color: #fff; font-weight: 700; display: flex; align-items: center; justify-content: center;
+  }
+
+  .aat-shots { display: grid; gap: 44px; }
+  .aat-shot h3 { font-size: 19px; margin: 0 0 6px; }
+  .aat-shot p { color: #5b5460; margin: 0 0 14px; font-size: 15px; max-width: 760px; }
+  .aat-shot img {
+    display: block; width: 100%; height: auto; border: 1px solid #e7e1e6; border-radius: 12px;
+    box-shadow: 0 12px 32px rgba(43, 29, 40, 0.12);
+  }
+  .aat-shot .tag {
+    display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    color: #714b67; margin-bottom: 4px;
+  }
+
+  .aat-footer { text-align: center; padding: 32px 0 56px; color: #5b5460; }
+  .aat-footer a { color: #714b67; font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="aat-page">
+
+  <section class="aat-hero">
+    <img src="icon.png" alt="Audit Trail"/>
+    <div class="aat-hero-text">
+      <span class="aat-kicker">AGBE Technologies</span>
+      <h1>Audit Trail &amp; Field Level Change Tracking</h1>
+      <p class="aat-tagline">
+        Know exactly who created, changed or deleted what, and when. Pick a model, and every
+        field-level change is logged with a side-by-side diff, exportable to Excel or PDF.
+      </p>
+    </div>
+  </section>
+
+  <div class="aat-strip">
+    <div><div class="num">Any Model</div><div class="label">Contacts, sales, stock, HR...</div></div>
+    <div><div class="num">Field Level</div><div class="label">Old vs. new value diff</div></div>
+    <div><div class="num">XLSX &amp; PDF</div><div class="label">Wizard-driven export</div></div>
+    <div><div class="num">No Code</div><div class="label">Configured from the UI</div></div>
+  </div>
+
+  <section class="aat-section">
+    <div class="aat-section-head">
+      <h2>Everything an auditor needs</h2>
+      <p>Built for compliance reviews, fraud investigations and plain "who changed this price?" questions.</p>
+    </div>
+    <div class="aat-grid">
+      <div class="aat-card"><div class="ico">1</div><h3>Rule-based auditing</h3>
+        <p>Create one rule per model and choose which operations to log: creation, update and/or deletion.</p></div>
+      <div class="aat-card"><div class="ico">2</div><h3>Choose the fields</h3>
+        <p>Log all fields, only the ones you pick, or everything except an exclusion list. Passwords are never logged.</p></div>
+      <div class="aat-card"><div class="ico">3</div><h3>View Diff popup</h3>
+        <p>Click the eye on any log row: old value in red, new value in green, with word-level highlighting.</p></div>
+      <div class="aat-card"><div class="ico">4</div><h3>Record history</h3>
+        <p>An "Audit History" entry in the Action menu of any audited record opens its full timeline.</p></div>
+      <div class="aat-card"><div class="ico">5</div><h3>Excel &amp; PDF export</h3>
+        <p>Filter by period, model, user and operation, or export just the logs you selected.</p></div>
+      <div class="aat-card"><div class="ico">6</div><h3>Email alerts</h3>
+        <p>One digest per save, import or delete, optionally only when key fields (price, credit limit...) change.</p></div>
+      <div class="aat-card"><div class="ico">7</div><h3>Readable forever</h3>
+        <p>Relations, selections and dates are stored as the user saw them, so history survives renamed or deleted records.</p></div>
+      <div class="aat-card"><div class="ico">8</div><h3>Retention &amp; purge</h3>
+        <p>Set how many days each rule keeps its logs; a daily scheduled action purges the rest.</p></div>
+      <div class="aat-card"><div class="ico">9</div><h3>Tamper-resistant</h3>
+        <p>Logs are read-only for everyone. Only Audit Managers can purge them; Auditors can read and export.</p></div>
+      <div class="aat-card"><div class="ico">10</div><h3>Restore old value</h3>
+        <p>Undo a wrong edit in one click, straight from the log. The restore is itself audited.</p></div>
+      <div class="aat-card"><div class="ico">11</div><h3>IP &amp; device capture</h3>
+        <p>Every change records the user's IP address and browser, ready for security investigations.</p></div>
+      <div class="aat-card"><div class="ico">12</div><h3>Bulk-operation guard</h3>
+        <p>Mass edits, imports and bulk deletes above a set size write one summary log, so big jobs stay fast.</p></div>
+    </div>
+  </section>
+
+  <section class="aat-section">
+    <div class="aat-section-head">
+      <h2>See the change, not just that something changed</h2>
+      <p>Every update is shown as a field-by-field diff.</p>
+    </div>
+    <table class="aat-diff">
+      <thead><tr><th>Field</th><th>Old Value</th><th>New Value</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Name</strong></td><td class="old">Acme Corp</td><td class="new">Acme Corporation</td></tr>
+        <tr><td><strong>Tags</strong></td><td class="old"></td><td class="new">VIP</td></tr>
+        <tr><td><strong>Notes</strong></td>
+          <td class="old">The quick <del>brown</del> fox jumps over the <del>lazy</del> dog</td>
+          <td class="new">The quick <ins>red</ins> fox jumps over the <ins>sleepy</ins> dog</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="aat-section">
+    <div class="aat-section-head">
+      <h2>Screenshots</h2>
+      <p>A walk through the module, from the change log to rules, alerts and reports.</p>
+    </div>
+    <div class="aat-shots">
+      <div class="aat-shot">
+        <span class="tag">Audit Logs</span>
+        <h3>Every field change, one row each</h3>
+        <p>Old and new values side by side, colour-coded by operation, with <strong>View Diff</strong> and one-click <strong>Restore</strong> on every row.</p>
+        <img src="screenshot_view_diff.png" alt="Audit Logs list with old and new values"/>
+      </div>
+      <div class="aat-shot">
+        <span class="tag">Operations</span>
+        <h3>One row per create, update or delete</h3>
+        <p>Who did what and when, which fields changed, from which IP address, with bulk operations flagged.</p>
+        <img src="screenshot_operations.png" alt="Operations list"/>
+      </div>
+      <div class="aat-shot">
+        <span class="tag">Diff Viewer</span>
+        <h3>See exactly which words changed</h3>
+        <p>Long text is compared word by word: removed words struck in red, added words highlighted in green, plus user, IP and browser.</p>
+        <img src="screenshot_operation_diff.png" alt="Operation detail with word-level diff"/>
+      </div>
+      <div class="aat-shot">
+        <span class="tag">Record History</span>
+        <h3>Audit History, right from the record</h3>
+        <p>An <strong>Audit History</strong> entry in the record's Action menu...</p>
+        <img src="screenshot_action_menu.png" alt="Audit History in the Action menu of a contact"/>
+      </div>
+      <div class="aat-shot">
+        <p>...opens the full timeline of that record: every creation and update, by whom and when.</p>
+        <img src="screenshot_record_history.png" alt="Audit history of a single contact"/>
+      </div>
+      <div class="aat-shot">
+        <span class="tag">Configuration</span>
+        <h3>Audit Rules</h3>
+        <p>One rule per model: choose operations, fields to track and how long to keep the logs.</p>
+        <img src="screenshot_audit_rules.png" alt="Audit Rules list"/>
+      </div>
+      <div class="aat-shot">
+        <h3>Rule settings and email alerts</h3>
+        <p>Retention period, bulk-operation limit, alert recipients, and alerts only when key fields change.</p>
+        <img src="screenshot_audit_rule.png" alt="Audit rule form with email alert settings"/>
+      </div>
+      <div class="aat-shot">
+        <span class="tag">Email Alerts</span>
+        <h3>A digest of what changed, in the inbox</h3>
+        <p>Each alert shows the user, the IP address and the old vs. new value, with a link back to the log.</p>
+        <img src="screenshot_alert_email.png" alt="Audit alert email"/>
+      </div>
+      <div class="aat-shot">
+        <span class="tag">Reporting</span>
+        <h3>Summary dashboard</h3>
+        <p>Graph and pivot views of audit activity by day, model, user and operation.</p>
+        <img src="screenshot_summary.png" alt="Audit Summary graph"/>
+      </div>
+      <div class="aat-shot">
+        <h3>Export to Excel or PDF</h3>
+        <p>Pick a period, operations, models and users, and download an audit-ready report.</p>
+        <img src="screenshot_export_wizard.png" alt="Export Audit Trail wizard"/>
+      </div>
+    </div>
+  </section>
+
+  <section class="aat-section">
+    <div class="aat-section-head"><h2>Get started in a minute</h2></div>
+    <ol class="aat-steps">
+      <li>Open <strong>Audit Trail &gt; Configuration &gt; Audit Rules</strong> and create a rule for a model, e.g. Contacts.</li>
+      <li>Choose the operations and fields to log, and optionally alert recipients and ignored users.</li>
+      <li>Click <strong>Add 'Audit History' to Action Menu</strong> to open a record's history straight from the record.</li>
+      <li>Review changes under <strong>Audit Logs</strong> (click <strong>View Diff</strong> or <strong>Restore</strong> on any row), see trends in <strong>Reporting &gt; Summary</strong>, and export from <strong>Reporting &gt; Export</strong>.</li>
+    </ol>
+  </section>
+
+  <div class="aat-footer">
+    Developed by <a href="https://www.agbeindia.com" target="_blank">AGBE Technologies</a>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="audit_rule_view_list" model="ir.ui.view">
+        <field name="name">audit.rule.list</field>
+        <field name="model">audit.rule</field>
+        <field name="arch" type="xml">
+            <list string="Audit Rules">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="model_id"/>
+                <field name="track_create" string="Create"/>
+                <field name="track_write" string="Update"/>
+                <field name="track_unlink" string="Delete"/>
+                <field name="field_mode"/>
+                <field name="retention_days"/>
+                <field name="log_count"/>
+                <field name="active" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="audit_rule_view_form" model="ir.ui.view">
+        <field name="name">audit.rule.form</field>
+        <field name="model">audit.rule</field>
+        <field name="arch" type="xml">
+            <form string="Audit Rule">
+                <header>
+                    <button name="action_add_history_action" type="object" string="Add 'Audit History' to Action Menu"
+                            class="btn-primary" invisible="history_action_id or not active or not id"
+                            help="Adds an 'Audit History' entry to the Action (gear) menu of this model's list and form views."/>
+                    <button name="action_remove_history_action" type="object" string="Remove from Action Menu"
+                            invisible="not history_action_id"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_logs" type="object" class="oe_stat_button" icon="fa-history">
+                            <field name="log_count" widget="statinfo" string="Logs"/>
+                        </button>
+                    </div>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
+                    <field name="active" invisible="1"/>
+                    <field name="history_action_id" invisible="1"/>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1><field name="name" placeholder="e.g. Customer changes"/></h1>
+                    </div>
+                    <group>
+                        <group string="What to Audit">
+                            <field name="model_id" options="{'no_create': True}" readonly="id"/>
+                            <field name="model_name" invisible="not model_id"/>
+                            <field name="track_create"/>
+                            <field name="track_write"/>
+                            <field name="track_unlink"/>
+                        </group>
+                        <group string="Retention &amp; Performance">
+                            <field name="retention_days"/>
+                            <div class="text-muted" colspan="2">
+                                Set 0 to keep logs forever. Expired logs are purged by a daily scheduled action.
+                            </div>
+                            <field name="batch_limit"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Fields" name="fields">
+                            <group>
+                                <field name="field_mode" widget="radio"/>
+                                <field name="field_ids" widget="many2many_tags" options="{'no_create': True}"
+                                       invisible="field_mode == 'all'" required="field_mode != 'all'"/>
+                            </group>
+                            <div class="text-muted">
+                                Binary fields and one-to-many lines are never logged on this model;
+                                to track order lines, invoice lines etc. add a rule on the line model.
+                                Password-like fields are never logged.
+                            </div>
+                        </page>
+                        <page string="Email Alerts" name="alerts">
+                            <group>
+                                <group string="Send an Alert on">
+                                    <field name="alert_create" invisible="not track_create"/>
+                                    <field name="alert_write" invisible="not track_write"/>
+                                    <field name="alert_unlink" invisible="not track_unlink"/>
+                                </group>
+                                <group string="Recipients">
+                                    <field name="alert_user_ids" widget="many2many_tags" nolabel="1" colspan="2"/>
+                                </group>
+                            </group>
+                            <group invisible="not alert_write or not track_write">
+                                <field name="alert_field_ids" widget="many2many_tags" options="{'no_create': True}"
+                                       placeholder="Any field"/>
+                            </group>
+                            <div class="text-muted">
+                                One email digest is sent per save/import/delete operation, listing every affected record
+                                and its field-level changes.
+                            </div>
+                        </page>
+                        <page string="Ignored Users" name="users">
+                            <field name="excluded_user_ids" widget="many2many_tags"/>
+                            <div class="text-muted">
+                                Changes made by these users are not logged (useful for integration or import users).
+                            </div>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="audit_rule_view_search" model="ir.ui.view">
+        <field name="name">audit.rule.search</field>
+        <field name="model">audit.rule</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="model_id"/>
+                <filter name="with_alerts" string="With Alerts" domain="[('alert_user_ids', '!=', False)]"/>
+                <separator/>
+                <filter name="archived" string="Archived" domain="[('active', '=', False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_audit_rule" model="ir.actions.act_window">
+        <field name="name">Audit Rules</field>
+        <field name="res_model">audit.rule</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create your first audit rule</p>
+            <p>Pick a model (e.g. Contacts, Sales Orders, Products) and choose which operations and fields to log.</p>
+        </field>
+    </record>
+
+</odoo>

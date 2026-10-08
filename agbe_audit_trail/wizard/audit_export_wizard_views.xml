@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="audit_export_wizard_view_form" model="ir.ui.view">
+        <field name="name">audit.export.wizard.form</field>
+        <field name="model">audit.export.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Export Audit Trail">
+                <field name="log_ids" invisible="1"/>
+                <div class="alert alert-info" role="alert" invisible="not log_ids">
+                    Only the logs selected in the list will be exported.
+                </div>
+                <group invisible="log_ids">
+                    <group string="Period">
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                    </group>
+                    <group string="Filters">
+                        <field name="operation"/>
+                        <field name="model_ids" widget="many2many_tags" options="{'no_create': True}"
+                               placeholder="All models"/>
+                        <field name="user_ids" widget="many2many_tags" options="{'no_create': True}"
+                               placeholder="All users"/>
+                    </group>
+                </group>
+                <group>
+                    <field name="export_format" widget="radio" options="{'horizontal': True}"/>
+                </group>
+                <footer>
+                    <button name="action_export" type="object" string="Export" class="btn-primary" icon="fa-download"/>
+                    <button special="cancel" string="Cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_audit_export_wizard" model="ir.actions.act_window">
+        <field name="name">Export Audit Trail</field>
+        <field name="res_model">audit.export.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Same wizard from the Action menu of the log list: exports the selection. -->
+    <record id="action_audit_export_wizard_selected" model="ir.actions.act_window">
+        <field name="name">Export Excel / PDF</field>
+        <field name="res_model">audit.export.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="model_audit_log"/>
+        <field name="binding_view_types">list</field>
+    </record>
+
+    <record id="action_audit_export_wizard_selected_lines" model="ir.actions.act_window">
+        <field name="name">Export Excel / PDF</field>
+        <field name="res_model">audit.export.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="model_audit_log_line"/>
+        <field name="binding_view_types">list</field>
+    </record>
+
+</odoo>

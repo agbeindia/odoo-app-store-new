@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="paperformat_audit_landscape" model="report.paperformat">
+        <field name="name">Audit Trail (A4 Landscape)</field>
+        <field name="format">A4</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">30</field>
+        <field name="margin_bottom">20</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_spacing">20</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="action_report_audit_log" model="ir.actions.report">
+        <field name="name">Audit Trail Report</field>
+        <field name="model">audit.log</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">agbe_audit_trail.report_audit_log</field>
+        <field name="report_file">agbe_audit_trail.report_audit_log</field>
+        <field name="print_report_name">'Audit Trail'</field>
+        <field name="paperformat_id" ref="paperformat_audit_landscape"/>
+        <field name="binding_model_id" ref="model_audit_log"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_audit_log">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <h3>Audit Trail Report</h3>
+                    <p class="text-muted" t-if="docs">
+                        <t t-out="len(docs)"/> log entries, from
+                        <span t-field="docs[-1].date"/> to <span t-field="docs[0].date"/>
+                    </p>
+                    <table class="table table-sm table-bordered" style="font-size: 11px;">
+                        <thead>
+                            <tr>
+                                <th style="width: 12%;">Date</th>
+                                <th style="width: 11%;">User</th>
+                                <th style="width: 7%;">Operation</th>
+                                <th style="width: 18%;">Record</th>
+                                <th style="width: 14%;">Field</th>
+                                <th style="width: 19%;">Old Value</th>
+                                <th style="width: 19%;">New Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="docs" t-as="log">
+                                <t t-set="lines" t-value="log.line_ids"/>
+                                <t t-set="span" t-value="max(len(lines), 1)"/>
+                                <tr>
+                                    <td t-att-rowspan="span"><span t-field="log.date"/></td>
+                                    <td t-att-rowspan="span">
+                                        <span t-field="log.user_id"/>
+                                        <div t-if="log.ip_address" class="text-muted">IP <t t-out="log.ip_address"/></div>
+                                    </td>
+                                    <td t-att-rowspan="span"><span t-field="log.operation"/></td>
+                                    <td t-att-rowspan="span">
+                                        <strong t-out="log.record_name"/>
+                                        <div class="text-muted">
+                                            <t t-out="log.model_description"/>
+                                            <t t-if="not log.is_bulk"> #<t t-out="log.res_id"/></t>
+                                            <t t-else=""> (bulk)</t>
+                                        </div>
+                                    </td>
+                                    <t t-if="lines">
+                                        <td t-out="lines[0].field_description"/>
+                                        <td style="background-color: #FDECEA; white-space: pre-wrap;" t-out="lines[0].old_value"/>
+                                        <td style="background-color: #E8F5E9; white-space: pre-wrap;" t-out="lines[0].new_value"/>
+                                    </t>
+                                    <t t-else="">
+                                        <td colspan="3" class="text-muted">No field values recorded</td>
+                                    </t>
+                                </tr>
+                                <tr t-foreach="lines[1:]" t-as="line">
+                                    <td t-out="line.field_description"/>
+                                    <td style="background-color: #FDECEA; white-space: pre-wrap;" t-out="line.old_value"/>
+                                    <td style="background-color: #E8F5E9; white-space: pre-wrap;" t-out="line.new_value"/>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

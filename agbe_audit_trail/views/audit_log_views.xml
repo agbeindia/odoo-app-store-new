@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============================================================
+         Audit Logs: one row per changed field (main entry point)
+         ============================================================ -->
+
+    <record id="audit_log_line_view_list" model="ir.ui.view">
+        <field name="name">audit.log.line.list</field>
+        <field name="model">audit.log.line</field>
+        <field name="arch" type="xml">
+            <list string="Audit Logs" create="0" edit="0" delete="0">
+                <field name="can_restore" column_invisible="1"/>
+                <field name="date"/>
+                <field name="model_description"/>
+                <field name="record_name" string="Record"/>
+                <field name="field_description" string="Field"/>
+                <field name="operation" widget="badge"
+                       decoration-success="operation == 'create'"
+                       decoration-warning="operation == 'write'"
+                       decoration-danger="operation == 'unlink'"/>
+                <field name="user_id" widget="many2one_avatar_user"/>
+                <field name="old_value" optional="show"/>
+                <field name="new_value" optional="show"/>
+                <field name="ip_address" optional="hide"/>
+                <field name="restored_date" optional="hide"/>
+                <button name="action_view_diff" type="object" string="View Diff" icon="fa-eye"
+                        class="btn btn-link btn-sm"/>
+                <button name="action_restore" type="object" string="Restore" icon="fa-undo"
+                        class="btn btn-link btn-sm" invisible="not can_restore"
+                        groups="agbe_audit_trail.group_audit_manager"
+                        confirm="Write the old value back onto the record?"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Popup opened by "View Diff": old value (red) vs new value (green) -->
+    <record id="audit_log_line_view_form_diff" model="ir.ui.view">
+        <field name="name">audit.log.line.form.diff</field>
+        <field name="model">audit.log.line</field>
+        <field name="priority">10</field>
+        <field name="arch" type="xml">
+            <form string="Change Details" create="0" edit="0" delete="0">
+                <field name="can_restore" invisible="1"/>
+                <field name="is_bulk" invisible="1"/>
+                <sheet>
+                    <div class="alert alert-info mb-3" role="status" invisible="not restored_date">
+                        This old value was restored by <field name="restored_by_id" class="fw-bold"/>
+                        on <field name="restored_date" class="fw-bold"/>.
+                    </div>
+                    <div class="alert alert-warning mb-3" role="status" invisible="not is_bulk">
+                        Part of a bulk operation: the value shown is from the first affected record.
+                    </div>
+                    <group>
+                        <group>
+                            <field name="field_description" string="Field"/>
+                            <field name="record_name" string="Record"/>
+                            <field name="model_description"/>
+                            <field name="operation"/>
+                        </group>
+                        <group>
+                            <field name="date"/>
+                            <field name="user_id" widget="many2one_avatar_user"/>
+                            <field name="ip_address" invisible="not ip_address"/>
+                            <field name="field_name"/>
+                        </group>
+                    </group>
+                    <div class="row g-3 mt-1">
+                        <div class="col-lg-6">
+                            <div class="p-3 rounded h-100" style="background-color: #ffeef0; border: 1px solid #f5c2c7;">
+                                <div class="fw-bold mb-2 text-danger"><i class="fa fa-minus-circle me-1"/>Old Value</div>
+                                <field name="diff_old_html" nolabel="1" readonly="1"
+                                       style="white-space: pre-wrap; word-break: break-word;"/>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="p-3 rounded h-100" style="background-color: #e6ffed; border: 1px solid #a3cfbb;">
+                                <div class="fw-bold mb-2 text-success"><i class="fa fa-plus-circle me-1"/>New Value</div>
+                                <field name="diff_new_html" nolabel="1" readonly="1"
+                                       style="white-space: pre-wrap; word-break: break-word;"/>
+                            </div>
+                        </div>
+                    </div>
+                    <style>
+                        del.o_audit_del { background: rgba(220, 53, 69, .3); text-decoration: line-through; }
+                        ins.o_audit_ins { background: rgba(25, 135, 84, .3); text-decoration: none; }
+                    </style>
+                </sheet>
+                <footer>
+                    <button name="action_restore" type="object" string="Restore Old Value" icon="fa-undo"
+                            class="btn-primary" invisible="not can_restore"
+                            groups="agbe_audit_trail.group_audit_manager"
+                            confirm="Write the old value back onto the record?"/>
+                    <button name="action_open_log" type="object" string="All Changes of this Operation"
+                            class="btn-secondary"/>
+                    <button special="cancel" string="Close" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="audit_log_line_view_search" model="ir.ui.view">
+        <field name="name">audit.log.line.search</field>
+        <field name="model">audit.log.line</field>
+        <field name="arch" type="xml">
+            <search string="Audit Logs">
+                <field name="record_name" string="Record" filter_domain="[('log_id.record_name', 'ilike', self)]"/>
+                <field name="field_description" string="Field"/>
+                <field name="model_id"/>
+                <field name="user_id"/>
+                <field name="old_value"/>
+                <field name="new_value"/>
+                <field name="res_id"/>
+                <filter name="op_create" string="Created" domain="[('operation', '=', 'create')]"/>
+                <filter name="op_write" string="Updated" domain="[('operation', '=', 'write')]"/>
+                <filter name="op_unlink" string="Deleted" domain="[('operation', '=', 'unlink')]"/>
+                <separator/>
+                <filter name="today" string="Today"
+                        domain="[('date', '&gt;=', 'today'), ('date', '&lt;', '+1d')]"/>
+                <filter name="filter_date" string="Date" date="date"/>
+                <separator/>
+                <filter name="my_changes" string="My Changes" domain="[('user_id', '=', uid)]"/>
+                <filter name="restored" string="Restored" domain="[('restored_date', '!=', False)]"/>
+                <group>
+                    <filter name="group_by_model" string="Document Type" context="{'group_by': 'model_id'}"/>
+                    <filter name="group_by_field" string="Field" context="{'group_by': 'field_id'}"/>
+                    <filter name="group_by_user" string="User" context="{'group_by': 'user_id'}"/>
+                    <filter name="group_by_operation" string="Operation" context="{'group_by': 'operation'}"/>
+                    <filter name="group_by_date" string="Date (Day)" context="{'group_by': 'date:day'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="audit_log_line_view_graph" model="ir.ui.view">
+        <field name="name">audit.log.line.graph</field>
+        <field name="model">audit.log.line</field>
+        <field name="arch" type="xml">
+            <graph string="Audit Activity" type="bar" stacked="1">
+                <field name="date" interval="day" type="row"/>
+                <field name="operation" type="col"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="audit_log_line_view_pivot" model="ir.ui.view">
+        <field name="name">audit.log.line.pivot</field>
+        <field name="model">audit.log.line</field>
+        <field name="arch" type="xml">
+            <pivot string="Audit Summary">
+                <field name="model_id" type="row"/>
+                <field name="operation" type="col"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="action_audit_log_line" model="ir.actions.act_window">
+        <field name="name">Audit Logs</field>
+        <field name="res_model">audit.log.line</field>
+        <field name="view_mode">list</field>
+        <field name="context">{'create': False}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">No changes logged yet</p>
+            <p>Create an audit rule under Configuration; every field it covers will be logged here when it changes.</p>
+        </field>
+    </record>
+
+    <record id="action_audit_summary" model="ir.actions.act_window">
+        <field name="name">Audit Summary</field>
+        <field name="res_model">audit.log.line</field>
+        <field name="view_mode">graph,pivot</field>
+        <field name="context">{'create': False}</field>
+        <field name="view_ids" eval="[Command.clear(),
+            Command.create({'view_mode': 'graph', 'view_id': ref('audit_log_line_view_graph')}),
+            Command.create({'view_mode': 'pivot', 'view_id': ref('audit_log_line_view_pivot')})]"/>
+    </record>
+
+    <!-- ============================================================
+         Operations: one row per create / update / delete
+         ============================================================ -->
+
+    <record id="audit_log_view_list" model="ir.ui.view">
+        <field name="name">audit.log.list</field>
+        <field name="model">audit.log</field>
+        <field name="arch" type="xml">
+            <list string="Operations" create="0" edit="0">
+                <field name="date"/>
+                <field name="user_id" widget="many2one_avatar_user"/>
+                <field name="operation" widget="badge"
+                       decoration-success="operation == 'create'"
+                       decoration-warning="operation == 'write'"
+                       decoration-danger="operation == 'unlink'"/>
+                <field name="model_description"/>
+                <field name="record_name"/>
+                <field name="is_bulk" optional="hide"/>
+                <field name="res_id" optional="hide"/>
+                <field name="changed_fields" optional="show"/>
+                <field name="change_count" optional="hide" sum="Total"/>
+                <field name="ip_address" optional="hide"/>
+                <field name="company_id" groups="base.group_multi_company" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="audit_log_view_form" model="ir.ui.view">
+        <field name="name">audit.log.form</field>
+        <field name="model">audit.log</field>
+        <field name="arch" type="xml">
+            <form string="Audit Log" create="0" edit="0">
+                <header>
+                    <button name="action_open_record" type="object" string="Open Record" class="btn-primary"
+                            invisible="not record_exists"/>
+                    <button name="action_record_history" type="object" string="Full Record History" icon="fa-history"
+                            invisible="is_bulk"/>
+                    <field name="operation" widget="statusbar" statusbar_visible="create,write,unlink"/>
+                </header>
+                <sheet>
+                    <field name="record_exists" invisible="1"/>
+                    <widget name="web_ribbon" title="Deleted" bg_color="text-bg-danger" invisible="operation != 'unlink'"/>
+                    <widget name="web_ribbon" title="Bulk" bg_color="text-bg-warning" invisible="not is_bulk or operation == 'unlink'"/>
+                    <div class="oe_title">
+                        <h1><field name="record_name"/></h1>
+                        <h4 class="text-muted"><field name="model_description"/></h4>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="date"/>
+                            <field name="user_id" widget="many2one_avatar_user"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                            <field name="ip_address" invisible="not ip_address"/>
+                            <field name="user_agent" invisible="not user_agent"/>
+                        </group>
+                        <group>
+                            <field name="model_name"/>
+                            <field name="res_id" invisible="is_bulk"/>
+                            <field name="rule_id"/>
+                            <field name="is_bulk" invisible="not is_bulk"/>
+                            <field name="bulk_count" invisible="not is_bulk"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Changes" name="diff">
+                            <field name="diff_html" nolabel="1"/>
+                        </page>
+                        <page string="Field Details" name="lines">
+                            <field name="line_ids">
+                                <list>
+                                    <field name="can_restore" column_invisible="1"/>
+                                    <field name="field_description"/>
+                                    <field name="field_name" optional="show"/>
+                                    <field name="field_type" optional="hide"/>
+                                    <field name="old_value"/>
+                                    <field name="new_value"/>
+                                    <field name="restored_date" optional="hide"/>
+                                    <button name="action_view_diff" type="object" string="View Diff" icon="fa-eye"
+                                            class="btn btn-link btn-sm"/>
+                                    <button name="action_restore" type="object" string="Restore" icon="fa-undo"
+                                            class="btn btn-link btn-sm" invisible="not can_restore"
+                                            groups="agbe_audit_trail.group_audit_manager"
+                                            confirm="Write the old value back onto the record?"/>
+                                </list>
+                            </field>
+                        </page>
+                        <page string="Affected Records" name="bulk" invisible="not is_bulk">
+                            <field name="bulk_res_ids" nolabel="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="audit_log_view_search" model="ir.ui.view">
+        <field name="name">audit.log.search</field>
+        <field name="model">audit.log</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="record_name"/>
+                <field name="model_id"/>
+                <field name="user_id"/>
+                <field name="changed_fields"/>
+                <field name="ip_address"/>
+                <field name="res_id"/>
+                <filter name="op_create" string="Created" domain="[('operation', '=', 'create')]"/>
+                <filter name="op_write" string="Updated" domain="[('operation', '=', 'write')]"/>
+                <filter name="op_unlink" string="Deleted" domain="[('operation', '=', 'unlink')]"/>
+                <separator/>
+                <filter name="bulk" string="Bulk Operations" domain="[('is_bulk', '=', True)]"/>
+                <filter name="my_changes" string="My Changes" domain="[('user_id', '=', uid)]"/>
+                <separator/>
+                <filter name="today" string="Today"
+                        domain="[('date', '&gt;=', 'today'), ('date', '&lt;', '+1d')]"/>
+                <filter name="filter_date" string="Date" date="date"/>
+                <group>
+                    <filter name="group_by_model" string="Document Type" context="{'group_by': 'model_id'}"/>
+                    <filter name="group_by_user" string="User" context="{'group_by': 'user_id'}"/>
+                    <filter name="group_by_operation" string="Operation" context="{'group_by': 'operation'}"/>
+                    <filter name="group_by_ip" string="IP Address" context="{'group_by': 'ip_address'}"/>
+                    <filter name="group_by_date" string="Date (Day)" context="{'group_by': 'date:day'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="audit_log_view_pivot" model="ir.ui.view">
+        <field name="name">audit.log.pivot</field>
+        <field name="model">audit.log</field>
+        <field name="arch" type="xml">
+            <pivot string="Audit Analysis">
+                <field name="model_id" type="row"/>
+                <field name="operation" type="col"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="audit_log_view_graph" model="ir.ui.view">
+        <field name="name">audit.log.graph</field>
+        <field name="model">audit.log</field>
+        <field name="arch" type="xml">
+            <graph string="Audit Analysis" type="bar" stacked="1">
+                <field name="user_id"/>
+                <field name="operation"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="action_audit_log" model="ir.actions.act_window">
+        <field name="name">Operations</field>
+        <field name="res_model">audit.log</field>
+        <field name="view_mode">list,form,pivot,graph</field>
+        <field name="context">{'create': False}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">No changes logged yet</p>
+            <p>Create an audit rule under Configuration; every create, update and delete it covers will appear here.</p>
+        </field>
+    </record>
+
+</odoo>

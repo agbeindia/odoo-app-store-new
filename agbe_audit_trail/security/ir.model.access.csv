@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_audit_rule_user,audit.rule.user,model_audit_rule,group_audit_user,1,0,0,0
+access_audit_rule_manager,audit.rule.manager,model_audit_rule,group_audit_manager,1,1,1,1
+access_audit_log_user,audit.log.user,model_audit_log,group_audit_user,1,0,0,0
+access_audit_log_manager,audit.log.manager,model_audit_log,group_audit_manager,1,0,0,1
+access_audit_log_line_user,audit.log.line.user,model_audit_log_line,group_audit_user,1,0,0,0
+access_audit_log_line_manager,audit.log.line.manager,model_audit_log_line,group_audit_manager,1,0,0,1
+access_audit_export_wizard_user,audit.export.wizard.user,model_audit_export_wizard,group_audit_user,1,1,1,1
